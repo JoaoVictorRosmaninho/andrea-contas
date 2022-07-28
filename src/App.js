@@ -1,12 +1,13 @@
 import './App.css';
-import MyNavBar from './components/NavBar';
-import { Container } from 'react-dom';
+
+import Routes from './routes/routes.js'
+import { useParams } from 'react-router-dom'
+
 
 function App() {
+  const { id } = useParams();
   return (
-    <div>
-      <MyNavBar/>
-    </div>
+    <Routes id={id ? Number(id) : null} />
   );
 }
 

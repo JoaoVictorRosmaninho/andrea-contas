@@ -1,0 +1,57 @@
+* {
+	box-sizing: border-box;
+	
+}
+
+.div-form {
+	position: absolute;
+	top: 20%;
+	left: 30%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	width: 50%;
+}
+
+form {
+	width: 100%;
+}
+
+.form-item {
+	margin: 10px 0 10px 0;
+}
+
+.align-right {
+
+	left: 30px;
+}
+
+.position-relative {
+	position: relative;
+}
+
+.align-right-selector {
+	left: 36px;
+}
+
+.form-item label {
+	margin-right: 5px;
+}
+
+form div > label {
+	color: blue;
+}
+
+.form-control {
+	display: inline;
+	width: 60%;
+	padding: 10px;
+	border-radius: 12px;
+}
+
+.btn {
+	position: relative;
+	left: 25%;
+	width: 30%;
+}

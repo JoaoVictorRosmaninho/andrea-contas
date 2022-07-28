@@ -3,36 +3,34 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Row from 'react-bootstrap/Row';
+import './css/component.css'
 
 function MyNavBar() {
   return (
   <Row>
     <Navbar bg="dark" expand="lg">
-      <Navbar.Brand >Andrea Contas</Navbar.Brand>
+      <Navbar.Brand>DashBoard</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
-            <NavDropdown title="Logistas" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Fundos/new">Cadastrar Logistas</NavDropdown.Item>
-              <NavDropdown.Item href="/Fundos">Listar Logistas</NavDropdown.Item>
+            <NavDropdown title="Gerenciar Logistas" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/Logistas/new">Cadastrar Logistas</NavDropdown.Item>
+              <NavDropdown.Item href="/Logistas">Listar Logistas</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Transações Caixa" id="basic-nav-dropdown">
+            <NavDropdown title="Clientes" id="basic-nav-dropdown">
               <NavDropdown.Item href="/transacaoCaixa/new">
-                    Nova Transação
+                    Cadastrar Cliente
               </NavDropdown.Item>
               <NavDropdown.Item href="/transacaoCaixa" > 
-                    Listar Transações
+                    Listar Cliente
               </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Transacões de Ativos" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/TransacaoAtivos/new">Compra e venda de Ativos</NavDropdown.Item>
-              <NavDropdown.Item href="/TransacaoAtivos">Listar Transações</NavDropdown.Item>
+            <NavDropdown title="Contas" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/TransacaoAtivos/new">Cadastrar Contas a Pagar</NavDropdown.Item>
+              <NavDropdown.Item href="/TransacaoAtivos">Listar Contas a Pagar</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Ativos" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Ativos/new">Novo Ativo</NavDropdown.Item>
-              <NavDropdown.Item href="/Ativos">Listar Ativos</NavDropdown.Item>
-              <NavDropdown.Item href="/Ativos/precos/new">Cadastrar Preços</NavDropdown.Item>
-              <NavDropdown.Item href="/Ativos/precos">Histórico de preços</NavDropdown.Item>
+            <NavDropdown title="Relatorios" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/Ativos/new">teste</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </Navbar.Collapse>
