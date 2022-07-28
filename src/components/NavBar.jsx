@@ -8,7 +8,7 @@ import './css/component.css'
 function MyNavBar() {
   return (
   <Row>
-    <Navbar bg="dark" expand="lg">
+    <Navbar bg="dark" expand="lg" variant="dark">
       <Navbar.Brand>DashBoard</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -18,10 +18,10 @@ function MyNavBar() {
               <NavDropdown.Item href="/Logistas">Listar Logistas</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Clientes" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/transacaoCaixa/new">
+              <NavDropdown.Item href="/Clientes/new">
                     Cadastrar Cliente
               </NavDropdown.Item>
-              <NavDropdown.Item href="/transacaoCaixa" > 
+              <NavDropdown.Item href="/Clientes" > 
                     Listar Cliente
               </NavDropdown.Item>
             </NavDropdown>
