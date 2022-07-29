@@ -12,13 +12,13 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Nome:</label> 
+                        <label for className="labelNome">Nome:</label> 
                         <input type="text" placeholder="Pedro Henrique" className="form-control" />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Sobrenome:</label> 
+                        <label for className="labelSobrenome">Sobrenome:</label> 
                         <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
                         </div>
                     </Col>
@@ -26,13 +26,13 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>CPF:</label> 
+                        <label for className="labelCPF">CPF:</label> 
                         <input type="text" className="form-control" placeholder="456.487.159-55" />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Telefone:</label> 
+                        <label for className="labelTelefone">Telefone:</label> 
                         <input type="text" className="form-control" placeholder="(32) 9 3456-7849" />
                         </div>
                     </Col>
@@ -41,13 +41,13 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Rua:</label> 
+                        <label for className="labelRua">Rua:</label> 
                         <input type="text" placeholder="Pedro Henrique" className="form-control" />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Bairro:</label> 
+                        <label for className="labelBairro">Bairro:</label> 
                         <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
                         </div>
                     </Col>
@@ -55,13 +55,13 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Número:</label> 
+                        <label for className="labelNumero">Número:</label> 
                         <input type="text" className="form-control" placeholder="456.487.159-55" />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Cidade:</label> 
+                        <label for className="labelCidade">Cidade:</label> 
                         <input type="text" className="form-control" placeholder="(32) 9 3456-7849" />
                         </div>
                     </Col>
@@ -69,13 +69,13 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>Estado:</label> 
+                        <label for className="labelEstado">Estado:</label> 
                         <input type="text" placeholder="Pedro Henrique" className="form-control" />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for>CEP:</label> 
+                        <label for className="labelCEP">CEP:</label> 
                         <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
                         </div>
                     </Col>
@@ -83,12 +83,17 @@ export default function CadastroCliente() {
                 <div> <label htmlFor="" className="bottom-border"> Avatar </label>  </div> 
                 <Row>
                     <Col sm={6}>
-                        <div className="form-item"> 
-                        <input type="file" className="form-control" />
+                        <div className="form-item divFile"> 
+                        <input type="file" id="file" className="form-control" accept="image/*"/>
+                        <label for="file">SELECIONAR IMAGEM
+                        <span class="material-icons">account_box</span>
+                        </label>
                         </div>
                     </Col>
                 </Row>
-				<Button className="btn" variant="dark">{buttonText}</Button>
+                <div id="rowBtn">
+                    <Button className="btn" >{buttonText}</Button>
+                </div>
 			</form>
 		</div>
 	)
