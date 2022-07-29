@@ -4,14 +4,12 @@
 }
 
 .div-form {
-	position: absolute;
-	top: 20%;
-	left: 30%;
+	margin: auto;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 50%;
+	width: 75%;
 }
 
 form {
@@ -45,7 +43,7 @@ form div > label {
 
 .form-control {
 	display: inline;
-	width: 60%;
+	width: 80%;
 	padding: 10px;
 	border-radius: 12px;
 }
@@ -54,4 +52,11 @@ form div > label {
 	position: relative;
 	left: 25%;
 	width: 30%;
+}
+
+.bottom-border {
+	border-bottom: 2px solid black;
+	padding-right: 40px;
+	padding-left: 8px;
+	padding-top: 25px;
 }

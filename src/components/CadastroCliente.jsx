@@ -1,14 +1,14 @@
 import { Button } from "react-bootstrap"
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import "./css/component.css"
+import "./css/client-component.css"
 
 export default function CadastroCliente() {
 	let buttonText = "Cadastrar";
 	return (
 		<div className="div-form">
 			<form>
-                Pessoa
+               <div> <label htmlFor="" className="bottom-border"> Pessoa </label>  </div> 
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
@@ -37,7 +37,7 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                 </Row>
-                Endereço
+                <div> <label htmlFor="" className="bottom-border"> Endereço </label>  </div> 
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
@@ -80,7 +80,7 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                 </Row>
-                Avatar
+                <div> <label htmlFor="" className="bottom-border"> Avatar </label>  </div> 
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
@@ -88,7 +88,7 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                 </Row>
-				<Button className="btn">{buttonText}</Button>
+				<Button className="btn" variant="dark">{buttonText}</Button>
 			</form>
 		</div>
 	)

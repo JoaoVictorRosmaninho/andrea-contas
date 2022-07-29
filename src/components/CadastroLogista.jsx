@@ -1,5 +1,5 @@
 import { Button } from "react-bootstrap"
-import "./css/component.css"
+import "./css/logista-component.css"
 
 export default function CadastroLogista() {
 	let buttonText = "Cadastrar";
@@ -21,7 +21,7 @@ export default function CadastroLogista() {
 						<option value="">Logista</option>
 					</select>
 				</div>
-				<Button className="btn">{buttonText}</Button>
+				<Button className="btn" variant="dark">{buttonText}</Button>
 			</form>
 		</div>
 	)

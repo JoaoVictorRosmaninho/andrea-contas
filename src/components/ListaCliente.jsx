@@ -1,5 +1,4 @@
 import Table from 'react-bootstrap/Table';
-import "./css/component.css"
 
 export default function ListaCliente() {
 	return (
