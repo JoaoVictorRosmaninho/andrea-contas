@@ -1,19 +1,20 @@
 * {
 	box-sizing: border-box;
-	
 }
 
 .div-form {
 	margin: auto;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 75%;
+	height: 100%;
 }
 
 form {
 	width: 100%;
+	height: 100%;
 }
 
 .form-item {
@@ -108,4 +109,24 @@ input[type="file"] {
 	justify-content: center;
 	align-items: center;
 	margin-bottom: 10px;
+}
+
+/*CSS PARA SEGUNDA NAVBAR*/
+.DetailsBar {
+	display: flex;
+	width: 100vw;
+	height: 30px;
+	background-color:#343a40;
+	color: white;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.details-itens {
+	display: flex;
+	align-items: center;
+}
+
+.details-itens span{
+	margin-right: 5px;
 }

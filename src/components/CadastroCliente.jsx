@@ -1,12 +1,14 @@
 import { Button } from "react-bootstrap"
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import DetailsBar from './DetailsBar';
 import "./css/client-component.css"
 
 export default function CadastroCliente() {
 	let buttonText = "Cadastrar";
 	return (
 		<div className="div-form">
+            <DetailsBar icon="edit_note" page_name="Cadastro de Clientes" user_name="Gustavo Goulart" />
 			<form>
                <div> <label htmlFor="" className="bottom-border"> Pessoa </label>  </div> 
                 <Row>
