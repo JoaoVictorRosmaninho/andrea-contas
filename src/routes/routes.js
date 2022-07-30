@@ -15,6 +15,7 @@ const Rotas = () => {
       <MyNavBar/>
       <Routes> 
         <Route element={<CadastroLogista/>} path="/Logistas/new/"/>
+        <Route element={<CadastroLogista/>} path="/Logistas/edit/:id"/>
         <Route element={<ListaLogista/>} path="/Logistas"/>
         <Route element={<CadastroCliente/>} path="/Clientes/new"/>
         <Route element={<ListaCliente/>} path="/Clientes/"/>

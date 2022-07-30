@@ -135,3 +135,12 @@ input[type="file"] {
 th, td {
 	text-align: center;
 }
+
+.table-buttons {
+	text-decoration: none;
+	color:beige;
+}
+
+.table-buttons:hover {
+	color:beige;
+}

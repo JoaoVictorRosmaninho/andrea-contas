@@ -48,8 +48,8 @@ export default function ListaLogista() {
 								<td>{element.nome}</td>
 								<td>{element.username}</td>
 								<td>
-									<Button>Editar</Button>
-									<Button >Deletar</Button>
+									<Button><a className="table-buttons" href={`/Logistas/edit/${element.id}`}>Editar</a></Button>
+									<Button ><a className="table-buttons" href={`/Logistas/edit/${element.id}`}>Deletar</a></Button>
 								</td>
 							</tr>
 						);
