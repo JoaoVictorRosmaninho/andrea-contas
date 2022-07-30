@@ -1,9 +1,10 @@
 import Table from 'react-bootstrap/Table';
+import { Row } from "react-bootstrap";
 import DetailsBar from './DetailsBar';
 
 export default function ListaCliente() {
 	return (
-        <div>
+        <Row>
             <DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
             <Table striped>
                 <thead>
@@ -38,6 +39,6 @@ export default function ListaCliente() {
                     </tr>
                 </tbody>
             </Table>
-        </div>
+        </Row>
 	);
 }

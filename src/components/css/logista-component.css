@@ -130,3 +130,8 @@ input[type="file"] {
 .details-itens span{
 	margin-right: 5px;
 }
+
+
+th, td {
+	text-align: center;
+}
