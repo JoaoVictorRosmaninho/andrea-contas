@@ -2,10 +2,35 @@ import { Button } from "react-bootstrap"
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import DetailsBar from './DetailsBar';
+import React from "react";
+import axios from "axios";
 import "./css/client-component.css"
 
+let config = {
+	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyMDU2NTksImV4cCI6MTY2NDM4OTY1OSwic3ViIjoiNDNlMWJmNmItYTE5NS00YjQ0LTg4MmQtNzNjYTUxYTU1ZjRhIn0.GLnY8H6JVZiETeOm4xz4MlNORQZaHmRzTMbTqLY4B0s"}
+}
+
 export default function CadastroCliente() {
+
+    let  [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", obervações: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
+
+	const onChangeEvent = (e) => {
+		const {name, value} = e.target;
+		setValues({...values,[name]:value});
+	}
+
+	const onSubmit = (e) => {
+		e.preventDefault();
+		axios.post("http://localhost:3001/clientes", values, config)
+			.then(console.log)
+			.catch ((err) => {
+				console.log(err)
+			});
+	}
+
 	let buttonText = "Cadastrar";
+
+    console.log(values);
 	return (
 		<div className="div-form">
             <DetailsBar icon="edit_note" page_name="Cadastro de Clientes" user_name="Gustavo Goulart" />
@@ -15,13 +40,13 @@ export default function CadastroCliente() {
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelNome">Nome:</label> 
-                        <input type="text" placeholder="Pedro Henrique" className="form-control" />
+                        <input type="text" placeholder="Pedro Henrique" className="form-control" name="nome" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelSobrenome">Sobrenome:</label> 
-                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
+                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" name="sobrenome" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                 </Row>
@@ -29,13 +54,13 @@ export default function CadastroCliente() {
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelCPF">CPF:</label> 
-                        <input type="text" className="form-control" placeholder="456.487.159-55" />
+                        <input type="text" className="form-control" placeholder="456.487.159-55" name="cpf" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelTelefone">Telefone:</label> 
-                        <input type="text" className="form-control" placeholder="(32) 9 3456-7849" />
+                        <input type="text" className="form-control" placeholder="(32) 9 3456-7849" name="telefone" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                 </Row>
@@ -44,13 +69,13 @@ export default function CadastroCliente() {
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelRua">Rua:</label> 
-                        <input type="text" placeholder="Pedro Henrique" className="form-control" />
+                        <input type="text" placeholder="Pedro Henrique" className="form-control" name="rua" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelBairro">Bairro:</label> 
-                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
+                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" name="bairro" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                 </Row>
@@ -58,13 +83,13 @@ export default function CadastroCliente() {
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelNumero">Número:</label> 
-                        <input type="text" className="form-control" placeholder="456.487.159-55" />
+                        <input type="text" className="form-control" placeholder="456.487.159-55" name="numero" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelCidade">Cidade:</label> 
-                        <input type="text" className="form-control" placeholder="(32) 9 3456-7849" />
+                        <input type="text" className="form-control" placeholder="(32) 9 3456-7849" name="cidade" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                 </Row>
@@ -72,18 +97,19 @@ export default function CadastroCliente() {
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelEstado">Estado:</label> 
-                        <input type="text" placeholder="Pedro Henrique" className="form-control" />
+                        <input type="text" placeholder="Pedro Henrique" className="form-control" name="estado" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label for className="labelCEP">CEP:</label> 
-                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" />
+                        <input type="text" className="form-control" placeholder="Pereira Alburquerque" name="cep" onChange={onChangeEvent}/>
                         </div>
                     </Col>
                 </Row>
-                <div> <label htmlFor="" className="bottom-border"> Avatar </label>  </div> 
-                <Row>
+                <div> <label htmlFor="" className="bottom-border"> Observação </label>  </div> 
+                {/*
+                 <Row>
                     <Col sm={6}>
                         <div className="form-item divFile"> 
                         <input type="file" id="file" className="form-control" accept="image/*"/>
@@ -92,9 +118,12 @@ export default function CadastroCliente() {
                         </label>
                         </div>
                     </Col>
-                </Row>
+                    </Row>                 
+                */}
+                <label htmlFor="observacoes"></label>
+                <input type="text" name="observacoes" id="observacoes" onChange={onChangeEvent}/>
                 <div id="rowBtn">
-                    <Button className="btn" >{buttonText}</Button>
+                    <Button className="btn" onClick={onSubmit}>{buttonText}</Button>
                 </div>
 			</form>
 		</div>
