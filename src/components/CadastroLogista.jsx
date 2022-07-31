@@ -5,14 +5,14 @@ import React from "react";
 import "./css/logista-component.css"
 import axios from "axios";
 
-let baseUrl = "http://localhost:3301/lojistas/update";
+let baseUrl = "http://localhost:3001/lojistas/findbyid";
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyMDU2NTksImV4cCI6MTY2NDM4OTY1OSwic3ViIjoiNDNlMWJmNmItYTE5NS00YjQ0LTg4MmQtNzNjYTUxYTU1ZjRhIn0.GLnY8H6JVZiETeOm4xz4MlNORQZaHmRzTMbTqLY4B0s"}
+	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM"}
 }
 
 export default function CadastroLogista() {
-	let  [values, setValues] = React.useState({nome: "",  username: "", senha: ""}); 
+	let  [values, setValues] = React.useState({nome: "",  username: "", senha: "", confirma_senha: ""}); 
 	let {id} = useParams();
 	let buttonText = id ? "Atualizar" : "Cadastrar";
 	
@@ -31,13 +31,13 @@ export default function CadastroLogista() {
 	const onSubmit = (e) => {
 		e.preventDefault();
 		if (id) {
-
+			axios.patch(`http://localhost:3001/lojistas/update/${id}`, values, config) 
+			.then(() => setValues({nome: "", username: "", senha: "", confirma_senha: ""}))
+			.catch((err) => console.log(err))
 		} else {
 		 axios.post("http://localhost:3001/lojistas", values, config)
-			.then(console.log)
-			.catch ((err) => {
-				console.log(err)
-			});
+			.then(() => setValues({nome: "", username: "", senha: ""}))
+			.catch((err) => console.log(err))
 		}
 	}
 
@@ -55,10 +55,23 @@ export default function CadastroLogista() {
 					<label for>Username:</label> 
 					<input type="text" value={values.username} placeholder="Entre com o novo username" name="username" className="form-control" onChange={onChangeEvent}/>
 				</div>
-				<div className="form-item"> 
-					<label for>Senha:</label> 
-					<input type="text" value={values.senha} className="form-control"  name="senha" placeholder="Entre a nova Senha" onChange={onChangeEvent} />
-				</div> 
+				{
+				 id && <div className="form-item"> 
+						<label for>Senha:</label> 
+						<input type="password" value={values.senha} className="form-control"  name="senha" placeholder="Entre a nova Senha" onChange={onChangeEvent} />
+					 </div> 
+				    || <div className="form-item"> 
+					 	<label for>Senha:</label> 
+					 	<input type="password" value={values.senha} className="form-control"  name="senha" placeholder="Senha de cadastro" onChange={onChangeEvent} />
+				  	</div> 
+				}
+				{
+
+				  id &&	<div className="form-item"> 
+				 		<label for>Confirmar Senha:</label> 
+				 		<input type="password" value={values.confirma_senha1} className="form-control"  name="confirma_senha" placeholder="Entre a nova Senha" onChange={onChangeEvent} />
+			  		</div> 
+				}
 				<div id="rowBtn">
 					<Button className="btn" variant="dark" onClick={onSubmit}>{buttonText}</Button>
 				</div>
