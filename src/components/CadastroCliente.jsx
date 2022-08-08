@@ -7,12 +7,12 @@ import axios from "axios";
 import "./css/client-component.css"
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM'"}
+	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM"}
 }
 
 export default function CadastroCliente() {
 
-    let  [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", obervações: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
+    const  [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", obervações: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
 
 	const onChangeEvent = (e) => {
 		const {name, value} = e.target;
@@ -108,20 +108,8 @@ export default function CadastroCliente() {
                     </Col>
                 </Row>
                 <div> <label htmlFor="" className="bottom-border"> Observação </label>  </div> 
-                {/*
-                 <Row>
-                    <Col sm={6}>
-                        <div className="form-item divFile"> 
-                        <input type="file" id="file" className="form-control" accept="image/*"/>
-                        <label for="file">SELECIONAR IMAGEM
-                        <span class="material-icons">account_box</span>
-                        </label>
-                        </div>
-                    </Col>
-                    </Row>                 
-                */}
                 <label htmlFor="observacoes"></label>
-                <input type="text" name="observacoes" id="observacoes" onChange={onChangeEvent}/>
+                <input  type="text" name="observacoes" id="observacoes" onChange={onChangeEvent}/>
                 <div id="rowBtn">
                     <Button className="btn" onClick={onSubmit}>{buttonText}</Button>
                 </div>

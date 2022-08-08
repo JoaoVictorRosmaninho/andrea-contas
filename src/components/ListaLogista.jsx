@@ -10,7 +10,7 @@ import axios from "axios";
 let baseUrl = "http://localhost:3001/lojistas"
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyMDU2NTksImV4cCI6MTY2NDM4OTY1OSwic3ViIjoiNDNlMWJmNmItYTE5NS00YjQ0LTg4MmQtNzNjYTUxYTU1ZjRhIn0.GLnY8H6JVZiETeOm4xz4MlNORQZaHmRzTMbTqLY4B0s"}
+	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTk5MTgyMTIsImV4cCI6MTY2NTEwMjIxMiwic3ViIjoiNWViNDllMTgtYzc5Mi00YTEwLWI0ZWQtYzM1ZTNlMGMxMGU5In0.oBOcQvuw3qof99OmZXXGuwBg2hiEh4uwOooDnLfT9b4"}
 }
 
 
@@ -27,7 +27,13 @@ export default function ListaLogista() {
 			})
     }, [])
 
-	console.log(values);
+	const deleteField = (e, id) => {
+		e.preventDefault();
+		axios.delete(`http://localhost:3001/lojistas/delete/${id}`, config)
+		.then(() => window.alert("Registro deletado com sucesso!"))
+		.catch (() => window.alert("Erro ao deletar registro"))
+	}
+
 	return (
 	<Row>
 		<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
@@ -43,13 +49,13 @@ export default function ListaLogista() {
                 <tbody>
 					{values.map((element) => {
 						return (
-							<tr>
+							<tr >
 								<td>{element.id}</td>
 								<td>{element.nome}</td>
 								<td>{element.username}</td>
 								<td>
 									<Button><a className="table-buttons" href={`/Logistas/edit/${element.id}`}>Editar</a></Button>
-									<Button ><a className="table-buttons" href={`/Logistas/edit/${element.id}`}>Deletar</a></Button>
+									<Button ><a className="table-buttons" >Desabilitar</a></Button>
 								</td>
 							</tr>
 						);

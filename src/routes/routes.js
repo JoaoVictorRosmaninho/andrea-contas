@@ -5,6 +5,7 @@ import CadastroLogista from '../components/CadastroLogista';
 import CadastroCliente from '../components/CadastroCliente';
 import ListaCliente from '../components/ListaCliente';
 import ListaLogista from "../components/ListaLogista";
+import CadastroConta from "../components/CadastroContas";
 import { Container } from "react-bootstrap";
 
 const Rotas = () => {
@@ -19,6 +20,7 @@ const Rotas = () => {
         <Route element={<ListaLogista/>} path="/Logistas"/>
         <Route element={<CadastroCliente/>} path="/Clientes/new"/>
         <Route element={<ListaCliente/>} path="/Clientes/"/>
+        <Route element={<CadastroConta/>} path="/Contas/new"/>
       </Routes>
     </Container>
   </BrowserRouter>
