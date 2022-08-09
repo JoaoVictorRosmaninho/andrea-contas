@@ -20,6 +20,7 @@ const Rotas = () => {
         <Route element={<ListaLogista/>} path="/Logistas"/>
         <Route element={<CadastroCliente/>} path="/Clientes/new"/>
         <Route element={<ListaCliente/>} path="/Clientes/"/>
+        <Route element={<CadastroCliente/>} path="/Clientes/edit/:id"/>
         <Route element={<CadastroConta/>} path="/Contas/new"/>
       </Routes>
     </Container>

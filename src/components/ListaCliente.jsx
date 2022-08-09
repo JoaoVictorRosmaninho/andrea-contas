@@ -39,7 +39,6 @@ export default function ListaCliente() {
 			<Table striped>
 				<thead>
 					<tr>
-						<th>#</th>
 						<th>Cliente</th>
 						<th>CPF</th>
 						<th>Telefone</th>
@@ -56,7 +55,7 @@ export default function ListaCliente() {
 								<td>{element.telefone}</td>
 								<td>
 									<Button><a className="table-buttons" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
-									<Button ><a className="table-buttons" >Desabilitar</a></Button>
+									<Button onClick={() => axios.delete(`http://localhost:3001/clientes/${element.id}`)}>Desabilitar</Button>
 								</td>
 							</tr>
 						);
