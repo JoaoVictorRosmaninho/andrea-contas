@@ -6,6 +6,7 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./css/client-component.css"
+import "./css/form-validation.css"
 
 let config = {
 	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM"}
@@ -15,7 +16,7 @@ const baseUrl = "http://localhost:3001/clientes/findbyid";
 
 export default function CadastroCliente() {
 
-    const  [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", obervações: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
+    const [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", observacoes: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
     const {id} = useParams();
 	
     
@@ -28,19 +29,73 @@ export default function CadastroCliente() {
     const onChangeEvent = (e) => {
 		const {name, value} = e.target;
 		setValues({...values,[name]:value});
-	}
+
+        const divAtual = e.target.parentElement;
+		validateInput(divAtual);
+    }
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		axios.post("http://localhost:3001/clientes", values, config)
+
+        if(isValidate()){
+            axios.post("http://localhost:3001/clientes", values, config)
 			.then(console.log)
 			.catch ((err) => {
 				console.log(err)
 			});
+        }else {
+            alert("Preencha todos os campos");
+        }
+		
 	}
 
 	let buttonText = "Cadastrar";
 
+    const isValidate = () => {
+		let count = 0;
+		const formArray = document.getElementsByClassName('form-item');
+		for (let index = 0; index < formArray.length; index++) {
+			let divAtual = formArray[index];
+			if(!validateInput(divAtual)){
+				count++;
+			}
+		}
+		if(count === 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	const validateInput = (divAtual) => {
+		let count = 0;
+		let inputAtual = divAtual.childNodes[1];
+		if (inputAtual.value === '') {
+			count++;
+			divAtual.className ="form-item invalid";
+			var img = document.createElement("img");
+			img.src = "../error_FILL0_wght400_GRAD0_opsz48.svg";
+			if(divAtual.lastChild.tagName === 'IMG') {
+				divAtual.replaceChild(img, divAtual.lastChild);
+			}else if(divAtual.lastChild.tagName === 'INPUT'){
+				divAtual.appendChild(img);
+			}
+		}else {
+			divAtual.className ="form-item valid";
+			var img = document.createElement("img");
+			img.src = "../check_FILL0_wght400_GRAD0_opsz48.svg";
+			if(divAtual.lastChild.tagName === 'IMG') {
+				divAtual.replaceChild(img, divAtual.lastChild);
+			}else if(divAtual.lastChild.tagName === 'INPUT'){
+				divAtual.appendChild(img);
+			}
+		}
+		if(count === 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	return (
 		<div className="div-form">
@@ -50,19 +105,19 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelNome">Nome:</label> 
+                        <label htmlFor="nome" className="labelNome">Nome:</label> 
                         <input type="text" 
                             placeholder="Pedro Henrique" 
                             className="form-control" 
                             name="nome" 
                             onChange={onChangeEvent}
-                            value={values.nome} 
+                            value={values.nome}
                         />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelSobrenome">Sobrenome:</label> 
+                        <label htmlFor="" className="labelSobrenome">Sobrenome:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -77,7 +132,7 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelCPF">CPF:</label> 
+                        <label htmlFor="" className="labelCPF">CPF:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -90,7 +145,7 @@ export default function CadastroCliente() {
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelTelefone">Telefone:</label> 
+                        <label htmlFor="" className="labelTelefone">Telefone:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -102,11 +157,27 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                 </Row>
-                <div> <label htmlFor="" className="bottom-border"> Endereço </label>  </div> 
+                <Row>
+                    <Col sm={6}>
+                        <div className="form-item" id="observacoes">
+                        <label htmlFor="observacoes">Observações:</label>
+                        <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Observações"
+                                name="observacoes"
+                                onChange={onChangeEvent}
+                                values={values.observacoes}
+                                />
+                        </div>
+                    </Col>
+                    <Col sm={6}></Col>
+                </Row>
+                <div> <label className="bottom-border"> Endereço </label>  </div> 
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelRua">Rua:</label> 
+                        <label htmlFor="rua" className="labelRua">Rua:</label> 
                         <input 
                             type="text" 
                             placeholder="Insira o nome da Rua" 
@@ -119,7 +190,7 @@ export default function CadastroCliente() {
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelBairro">Bairro:</label> 
+                        <label htmlFor="" className="labelBairro">Bairro:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -134,7 +205,7 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelNumero">Número:</label> 
+                        <label htmlFor="" className="labelNumero">Número:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -147,7 +218,7 @@ export default function CadastroCliente() {
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelCidade">Cidade:</label> 
+                        <label htmlFor="" className="labelCidade">Cidade:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -162,7 +233,7 @@ export default function CadastroCliente() {
                 <Row>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelEstado">Estado:</label> 
+                        <label htmlFor="" className="labelEstado">Estado:</label> 
                         <input 
                             type="text" 
                             placeholder="Insira o nome do estado" 
@@ -175,7 +246,7 @@ export default function CadastroCliente() {
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
-                        <label for className="labelCEP">CEP:</label> 
+                        <label htmlFor="" className="labelCEP">CEP:</label> 
                         <input 
                             type="text" 
                             className="form-control" 
@@ -187,9 +258,6 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                 </Row>
-                <div> <label htmlFor="" className="bottom-border"> Observação </label>  </div> 
-                <label htmlFor="observacoes"></label>
-                <input  type="text" name="observacoes" id="observacoes" onChange={onChangeEvent}/>
                 <div id="rowBtn">
                     <Button className="btn" onClick={onSubmit}>{buttonText}</Button>
                 </div>

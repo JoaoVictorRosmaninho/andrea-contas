@@ -1,0 +1,35 @@
+/* Style for validation */
+.invalid input{
+	box-shadow:  0px 0px 0px 4px rgb(218, 114, 135);
+	border: 0.3px solid rgb(233, 54, 54);
+}
+
+.invalid input:focus{
+	box-shadow:  0px 0px 0px 4px rgb(218, 114, 135);
+	border: 0.3px solid rgb(233, 54, 54);
+}
+
+.invalid img {
+	position: absolute;
+	margin-right: 10px;
+	color: red;
+    transform: scale(0.7);
+}
+
+
+.valid input{
+	box-shadow:  0px 0px 0px 4px rgb(126, 218, 114);
+	border: 0.3px solid rgb(84, 233, 54);
+}
+
+.valid input:focus{
+	box-shadow:  0px 0px 0px 4px rgb(126, 218, 114);
+	border: 0.3px solid rgb(84, 233, 54);
+}
+
+.valid img {
+	position: absolute;
+	margin-right: 10px;
+	fill: green;
+    transform: scale(0.7);
+}
