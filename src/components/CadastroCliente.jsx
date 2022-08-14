@@ -47,6 +47,61 @@ export default function CadastroCliente() {
         }
 	}
 
+
+    const isValidate = () => {
+		let count = 0;
+		const formArray = document.getElementsByClassName('form-item');
+		for (let index = 0; index < formArray.length; index++) {
+			let divAtual = formArray[index];
+			if(!validateInput(divAtual)){
+				count++;
+			}
+		}
+		if(count === 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	const validateInput = (divAtual) => {
+		let count = 0;
+		let inputAtual = divAtual.childNodes[1];
+
+        const field = inputAtual.dataset.js;
+        inputAtual.value = masks[field](inputAtual.value);
+
+		if ((inputAtual.value === '') ||
+            (
+                (field === 'cpf' && inputAtual.value.length < 14) ||
+                (field === 'cep' && inputAtual.value.length < 9) ||
+                (field === 'telefone' && inputAtual.value.length < 15)
+            )
+            ) {
+			count++;
+            addIconAndClass(divAtual, 'error', 'invalid');
+		}else {
+            addIconAndClass(divAtual, 'check', 'valid');
+		}
+
+		if(count === 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+    const addIconAndClass = (divAtual, status, statusName) => {
+        divAtual.className =`form-item ${statusName}`;
+        let img = document.createElement("img");
+        img.src = `../${status}_FILL0_wght400_GRAD0_opsz48.svg`;
+        if(divAtual.lastChild.tagName === 'IMG') {
+            divAtual.replaceChild(img, divAtual.lastChild);
+        }else if(divAtual.lastChild.tagName === 'INPUT'){
+            divAtual.appendChild(img);
+        }
+    }
+
     const masks = {
         cpf (value) {
           return value
@@ -89,58 +144,6 @@ export default function CadastroCliente() {
             return value
             .replace(/\D+/g, '')
         },
-    }
-
-    const isValidate = () => {
-		let count = 0;
-		const formArray = document.getElementsByClassName('form-item');
-		for (let index = 0; index < formArray.length; index++) {
-			let divAtual = formArray[index];
-			if(!validateInput(divAtual)){
-				count++;
-			}
-		}
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	const validateInput = (divAtual) => {
-		let count = 0;
-		let inputAtual = divAtual.childNodes[1];
-        const field = inputAtual.dataset.js;
-        inputAtual.value = masks[field](inputAtual.value);
-		if ((inputAtual.value === '') ||
-            (
-                (field === 'cpf' && inputAtual.value.length < 14) ||
-                (field === 'cep' && inputAtual.value.length < 9) ||
-                (field === 'telefone' && inputAtual.value.length < 15)
-            )
-            ) {
-			count++;
-            addIconAndClass(divAtual, 'error', 'invalid');
-		}else {
-            addIconAndClass(divAtual, 'check', 'valid');
-		}
-
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-    const addIconAndClass = (divAtual, status, statusName) => {
-        divAtual.className =`form-item ${statusName}`;
-        let img = document.createElement("img");
-        img.src = `../${status}_FILL0_wght400_GRAD0_opsz48.svg"`;
-        if(divAtual.lastChild.tagName === 'IMG') {
-            divAtual.replaceChild(img, divAtual.lastChild);
-        }else if(divAtual.lastChild.tagName === 'INPUT'){
-            divAtual.appendChild(img);
-        }
     }
 
 	return (

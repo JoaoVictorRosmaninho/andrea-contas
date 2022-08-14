@@ -27,11 +27,11 @@ export default function CadastroLogista() {
 	
 
 	const onChangeEvent = (e) => {
-		const {name, value} = e.target;
-		setValues({...values,[name]:value});
-
 		const divAtual = e.target.parentElement;
 		validateInput(divAtual);
+
+		const {name, value} = e.target;
+		setValues({...values,[name]:value});
 	}
 
 	const onSubmit = (e) => {
@@ -74,26 +74,17 @@ export default function CadastroLogista() {
 	const validateInput = (divAtual) => {
 		let count = 0;
 		let inputAtual = divAtual.childNodes[1];
+
+		const field = inputAtual.dataset.js;
+        inputAtual.value = masks[field](inputAtual.value);
+
 		if (inputAtual.value === '') {
 			count++;
-			divAtual.className ="form-item invalid";
-			var img = document.createElement("img");
-			img.src = "../error_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
+			addIconAndClass(divAtual, 'error', 'invalid');
 		}else {
-			divAtual.className ="form-item valid";
-			var img = document.createElement("img");
-			img.src = "../check_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
+            addIconAndClass(divAtual, 'check', 'valid');
 		}
+
 		if(count === 0){
 			return true;
 		}else {
@@ -101,7 +92,31 @@ export default function CadastroLogista() {
 		}
 	}
 
-	console.log(values);
+	const addIconAndClass = (divAtual, status, statusName) => {
+        divAtual.className =`form-item ${statusName}`;
+        let img = document.createElement("img");
+        img.src = `../${status}_FILL0_wght400_GRAD0_opsz48.svg`;
+        if(divAtual.lastChild.tagName === 'IMG') {
+            divAtual.replaceChild(img, divAtual.lastChild);
+        }else if(divAtual.lastChild.tagName === 'INPUT'){
+            divAtual.appendChild(img);
+        }
+    }
+
+	const masks = {
+        nomeProprio (value) {
+            value = value.toLowerCase().replace(/(?:^|\s)\S/g, function(a) {
+            return a.toUpperCase();
+            });
+
+            return value.replace(/\d+/g, '')
+        },
+
+        texto (value) {
+            return value
+        },
+    }
+
 	return (
 		<div className="div-form">
 			<DetailsBar icon="edit_note" page_name="Cadastro de Lojista" user_name="Gustavo Goulart" />
@@ -109,27 +124,65 @@ export default function CadastroLogista() {
 				<div className="formElements" id="formElements">
 				<div className="form-item">
 					<label htmlFor="nome">Nome:</label> 
-					<input type="text" value={values.nome} id="inputNome" placeholder="Entre com o novo nome" name="nome" className="form-control" onChange={onChangeEvent} required/>
+					<input type="text"
+					value={values.nome}
+					id="inputNome"
+					placeholder="Entre com o novo nome" name="nome"
+					className="form-control" onChange={onChangeEvent}
+					data-js="nomeProprio"
+					required/>
 				</div>
 				<div className="form-item"> 
 					<label htmlFor="username">Username:</label> 
-					<input type="text" value={values.username} id="inputUsername" placeholder="Entre com o novo username" name="username" className="form-control" onChange={onChangeEvent} required/>
+					<input type="text"
+					value={values.username}
+					id="inputUsername"
+					placeholder="Entre com o novo username"
+					name="username"
+					className="form-control"
+					onChange={onChangeEvent}
+					data-js="texto"
+					required/>
 				</div>
 				{
 				 id && <div className="form-item"> 
 						<label htmlFor="senha">Senha:</label> 
-						<input type="password" value={values.senha} id="inputSenha" className="form-control"  name="senha" placeholder="Entre a nova Senha" onChange={onChangeEvent} required/>
-					 </div> 
-				    || <div className="form-item"> 
-					 	<label htmlFor="senha">Senha:</label> 
-					 	<input type="password" value={values.senha} id="inputSenha" className="form-control"  name="senha" placeholder="Senha de cadastro" onChange={onChangeEvent} required/>
-				  	</div> 
+						<input type="password"
+						value={values.senha}
+						id="inputSenha"
+						className="form-control" 
+						name="senha"
+						placeholder="Entre a nova Senha"
+						onChange={onChangeEvent}
+						data-js="texto"
+						required/>
+					 </div>
+				    || <div className="form-item">
+					 	<label htmlFor="senha">Senha:</label>
+					 	<input type="password"
+						value={values.senha}
+						id="inputSenha"
+						className="form-control"
+						name="senha"
+						placeholder="Senha de cadastro"
+						onChange={onChangeEvent}
+						data-js="texto"
+						required/>
+				  	</div>
 				}
 				{
 
 				  id &&	<div className="form-item"> 
 				 		<label htmlFor="senhaConfirmada">Confirmar Senha:</label> 
-				 		<input type="password" value={values.confirma_senha} id="inputSenhaConfirma" className="form-control"  name="confirma_senha" placeholder="Entre a nova Senha" onChange={onChangeEvent} required/>
+				 		<input type="password"
+						value={values.confirma_senha}
+						id="inputSenhaConfirma"
+						className="form-control"
+						name="confirma_senha"
+						placeholder="Entre a nova Senha"
+						onChange={onChangeEvent}
+						data-js="texto"
+						required/>
 			  		</div> 
 				}
 				<div className="divBtn" id="rowBtn">
