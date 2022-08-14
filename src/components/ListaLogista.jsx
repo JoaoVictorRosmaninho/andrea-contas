@@ -54,8 +54,8 @@ export default function ListaLogista() {
 								<td>{element.nome}</td>
 								<td>{element.username}</td>
 								<td>
-									<Button><a className="table-buttons" href={`/Logistas/edit/${element.id}`}>Editar</a></Button>
-									<Button ><a className="table-buttons" onClick={() => axios.delete(`http://localhost:3001/lojistas/${element.id}`, config)}>Desabilitar</a></Button>
+									<Button className="table-buttons"><a className="link" href={`/Logistas/edit/${element.id}`}>Editar</a></Button>
+									<Button ><a className="link" onClick={() => axios.delete(`http://localhost:3001/lojistas/${element.id}`, config)}>Desabilitar</a></Button>
 								</td>
 							</tr>
 							

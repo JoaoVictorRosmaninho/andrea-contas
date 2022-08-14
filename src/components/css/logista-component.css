@@ -141,6 +141,10 @@ th, td {
 }
 
 .table-buttons {
+	margin-right: 5px;
+}
+
+.link {
 	text-decoration: none;
 	color:beige;
 }

@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { Row } from "react-bootstrap";
 import DetailsBar from './DetailsBar';
+import "./css/logista-component.css"
 
 
 let baseUrl = "http://localhost:3001/clientes"
@@ -42,7 +43,7 @@ export default function ListaCliente() {
 						<th>Cliente</th>
 						<th>CPF</th>
 						<th>Telefone</th>
-						<th></th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,8 +55,8 @@ export default function ListaCliente() {
 								<td>{element.cpf}</td>
 								<td>{element.telefone}</td>
 								<td>
-									<Button><a className="table-buttons" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
-									<Button onClick={() => axios.delete(`http://localhost:3001/clientes/${element.id}`)}>Desabilitar</Button>
+									<Button className="table-buttons" ><a className="link" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
+									<Button className="table-buttons"  onClick={() => axios.delete(`http://localhost:3001/clientes/${element.id}`)}>Desabilitar</Button>
 								</td>
 							</tr>
 						);
