@@ -64,24 +64,6 @@ export default function CadastroCliente() {
         }
 	}
 
-<<<<<<< Updated upstream
-
-    const isValidate = () => {
-		let count = 0;
-		const formArray = document.getElementsByClassName('form-item');
-		for (let index = 0; index < formArray.length; index++) {
-			let divAtual = formArray[index];
-			if(!validateInput(divAtual)){
-				count++;
-			}
-		}
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
 	const validateInput = (divAtual) => {
 		let count = 0;
 		let inputAtual = divAtual.childNodes[1];
@@ -109,6 +91,22 @@ export default function CadastroCliente() {
 		}
 	}
 
+    const isValidate = () => {
+		let count = 0;
+		const formArray = document.getElementsByClassName('form-item');
+		for (let index = 0; index < formArray.length; index++) {
+			let divAtual = formArray[index];
+			if(!validateInput(divAtual)){
+				count++;
+			}
+		}
+		if(count === 0){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
     const addIconAndClass = (divAtual, status, statusName) => {
         divAtual.className =`form-item ${statusName}`;
         let img = document.createElement("img");
@@ -120,8 +118,6 @@ export default function CadastroCliente() {
         }
     }
 
-=======
->>>>>>> Stashed changes
     const masks = {
         cpf (value) {
           return value
@@ -165,58 +161,6 @@ export default function CadastroCliente() {
             .replace(/\D+/g, '')
         },
     }
-<<<<<<< Updated upstream
-=======
-      
-
-    const isValidate = () => {
-		let count = 0;
-		const formArray = document.getElementsByClassName('form-item');
-		for (let index = 0; index < formArray.length; index++) {
-			let divAtual = formArray[index];
-			if(!validateInput(divAtual)){
-				count++;
-			}
-		}
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	const validateInput = (divAtual) => {
-		let count = 0;
-		let inputAtual = divAtual.childNodes[1];
-        const field = inputAtual.dataset.js;
-        inputAtual.value = masks[field](inputAtual.value);
-		if (inputAtual.value === '') {
-			count++;
-			divAtual.className ="form-item invalid";
-			let img = document.createElement("img");
-			img.src = "../error_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
-		}else {
-			divAtual.className ="form-item valid";
-			let img = document.createElement("img");
-			img.src = "../check_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
-		}
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
->>>>>>> Stashed changes
 
 	return (
 		<div className="div-form">
@@ -268,11 +212,7 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                     <Col sm={6}>
-<<<<<<< Updated upstream
-                        <div className="form-item">
-=======
                         <div className="form-item mt-left"> 
->>>>>>> Stashed changes
                         <label htmlFor="" className="labelTelefone">Telefone:</label> 
                         <input
                             type="text"

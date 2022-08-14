@@ -93,7 +93,6 @@ export default function CadastroLogista() {
 		}
 	}
 
-<<<<<<< Updated upstream
 	const addIconAndClass = (divAtual, status, statusName) => {
         divAtual.className =`form-item ${statusName}`;
         let img = document.createElement("img");
@@ -119,8 +118,6 @@ export default function CadastroLogista() {
         },
     }
 
-=======
->>>>>>> Stashed changes
 	return (
 		<div className="div-form">
 			<DetailsBar icon="edit_note" page_name="Cadastro de Lojista" user_name="Gustavo Goulart" />

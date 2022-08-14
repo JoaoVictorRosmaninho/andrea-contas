@@ -55,17 +55,24 @@ export default function CadastroContas() {
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-
+		let count = 0;
 		let inputData = document.getElementById('inputData');
-        if(isValidate() && validaData(inputData)){
-            axios.post("http://localhost:3001/contas", values, config)
+
+		if(!(validaData(inputData))){
+			alert("Preencha todos os campos!");
+		}else{
+			count++;
+		}
+
+		if((isValidate()) && (count === 1)){
+			axios.post("http://localhost:3001/contas", values, config)
 			.then(() => setValues({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fk_id_cliente: ""}))
 			.catch ((err) => {
 				console.log(err)
 			});
-        }else {
-            alert("Preencha todos os campos corretamente!");
-        }
+		}else {
+			alert("Preencha todos os campos!");
+		}
 	}
 
 	const isValidate = () => {
@@ -106,6 +113,8 @@ export default function CadastroContas() {
 	}
 
 	const validaData = (inputData) => {
+		console.log("oi");
+		console.log(inputData.value);
 		let count = 0;
 		for (let index = 0; index < inputData.value.length; index++) {
 			if(!isNaN(inputData.value)){
