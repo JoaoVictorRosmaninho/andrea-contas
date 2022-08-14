@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap"
+import { Button } from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import DetailsBar from './DetailsBar';
@@ -45,10 +45,8 @@ export default function CadastroCliente() {
         }else {
             alert("Preencha todos os campos");
         }
-		
 	}
 
-	
     const masks = {
         cpf (value) {
           return value
@@ -92,7 +90,6 @@ export default function CadastroCliente() {
             .replace(/\D+/g, '')
         },
     }
-      
 
     const isValidate = () => {
 		let count = 0;
@@ -115,26 +112,19 @@ export default function CadastroCliente() {
 		let inputAtual = divAtual.childNodes[1];
         const field = inputAtual.dataset.js;
         inputAtual.value = masks[field](inputAtual.value);
-		if (inputAtual.value === '') {
+		if ((inputAtual.value === '') ||
+            (
+                (field === 'cpf' && inputAtual.value.length < 14) ||
+                (field === 'cep' && inputAtual.value.length < 9) ||
+                (field === 'telefone' && inputAtual.value.length < 15)
+            )
+            ) {
 			count++;
-			divAtual.className ="form-item invalid";
-			var img = document.createElement("img");
-			img.src = "../error_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
+            addIconAndClass(divAtual, 'error', 'invalid');
 		}else {
-			divAtual.className ="form-item valid";
-			var img = document.createElement("img");
-			img.src = "../check_FILL0_wght400_GRAD0_opsz48.svg";
-			if(divAtual.lastChild.tagName === 'IMG') {
-				divAtual.replaceChild(img, divAtual.lastChild);
-			}else if(divAtual.lastChild.tagName === 'INPUT'){
-				divAtual.appendChild(img);
-			}
+            addIconAndClass(divAtual, 'check', 'valid');
 		}
+
 		if(count === 0){
 			return true;
 		}else {
@@ -142,7 +132,16 @@ export default function CadastroCliente() {
 		}
 	}
 
-    console.log(values);
+    const addIconAndClass = (divAtual, status, statusName) => {
+        divAtual.className =`form-item ${statusName}`;
+        let img = document.createElement("img");
+        img.src = `../${status}_FILL0_wght400_GRAD0_opsz48.svg"`;
+        if(divAtual.lastChild.tagName === 'IMG') {
+            divAtual.replaceChild(img, divAtual.lastChild);
+        }else if(divAtual.lastChild.tagName === 'INPUT'){
+            divAtual.appendChild(img);
+        }
+    }
 
 	return (
 		<div className="div-form">
@@ -164,12 +163,12 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                     <Col sm={6}>
-                        <div className="form-item"> 
+                        <div className="form-item">
                         <label htmlFor="" className="labelSobrenome">Sobrenome:</label> 
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Pereira Alburquerque" 
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Pereira Alburquerque"
                             name="sobrenome"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
@@ -180,10 +179,10 @@ export default function CadastroCliente() {
                 </Row>
                 <Row>
                     <Col sm={6}>
-                        <div className="form-item"> 
-                        <label htmlFor="" className="labelCPF">CPF:</label> 
-                        <input 
-                            type="text" 
+                        <div className="form-item">
+                        <label htmlFor="" className="labelCPF">CPF:</label>
+                        <input
+                            type="text"
                             className="form-control"
                             placeholder="456.487.159-55"
                             name="cpf"
@@ -194,13 +193,13 @@ export default function CadastroCliente() {
                         </div>
                     </Col>
                     <Col sm={6}>
-                        <div className="form-item"> 
+                        <div className="form-item">
                         <label htmlFor="" className="labelTelefone">Telefone:</label> 
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="insira seu telefone" 
-                            name="telefone" 
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="insira seu telefone"
+                            name="telefone"
                             onChange={onChangeEvent}
                             data-js="telefone"
                             value={values.telefone}
@@ -228,13 +227,13 @@ export default function CadastroCliente() {
                 <div> <label className="bottom-border"> Endereço </label>  </div> 
                 <Row>
                     <Col sm={6}>
-                        <div className="form-item"> 
-                        <label htmlFor="rua" className="labelRua">Rua:</label> 
+                        <div className="form-item">
+                        <label htmlFor="rua" className="labelRua">Rua:</label>
                         <input 
-                            type="text" 
-                            placeholder="Insira o nome da Rua" 
-                            className="form-control" 
-                            name="rua" 
+                            type="text"
+                            placeholder="Insira o nome da Rua"
+                            className="form-control"
+                            name="rua"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
                             value={values.rua}
@@ -294,7 +293,7 @@ export default function CadastroCliente() {
                             type="text" 
                             placeholder="Insira o nome do estado" 
                             className="form-control" 
-                            name="nomeProprio" 
+                            name="estado" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
                             value={values.estado}
