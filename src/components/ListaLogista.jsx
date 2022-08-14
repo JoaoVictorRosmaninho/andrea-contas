@@ -10,7 +10,7 @@ import axios from "axios";
 let baseUrl = "http://localhost:3001/lojistas"
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTk5MTgyMTIsImV4cCI6MTY2NTEwMjIxMiwic3ViIjoiNWViNDllMTgtYzc5Mi00YTEwLWI0ZWQtYzM1ZTNlMGMxMGU5In0.oBOcQvuw3qof99OmZXXGuwBg2hiEh4uwOooDnLfT9b4"}
+	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
 }
 
 
@@ -35,9 +35,9 @@ export default function ListaLogista() {
 	}
 
 	return (
-	<Row>
+	<div>
 		<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
-            <Table striped>
+            <Table className="ms-3" striped style={{"position":"relative", "left": "100px"}}>
                 <thead>
                     <tr>
                         <th align="center">id</th>
@@ -63,6 +63,6 @@ export default function ListaLogista() {
 					})}
                 </tbody>
             </Table>
-	</Row>
+	</div>
 	)
 }

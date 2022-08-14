@@ -6,6 +6,9 @@
 	display: none;
 }
 
+
+
+
 .div-form {
 	margin: auto;
 	display: flex;
@@ -163,4 +166,28 @@ th, td {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.mt-left {
+	margin-left: 10px;
+}
+
+.table {
+	width: 90%;
+	margin: auto;
+	margin-top: 45px;
+}
+
+.form-login {
+	position: relative;
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: lightgrey;
+	width: 80%;
+	left: 70px; 
+	top: 70px;
 }

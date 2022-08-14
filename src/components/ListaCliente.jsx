@@ -10,7 +10,7 @@ import "./css/logista-component.css"
 let baseUrl = "http://localhost:3001/clientes"
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyMDU2NTksImV4cCI6MTY2NDM4OTY1OSwic3ViIjoiNDNlMWJmNmItYTE5NS00YjQ0LTg4MmQtNzNjYTUxYTU1ZjRhIn0.GLnY8H6JVZiETeOm4xz4MlNORQZaHmRzTMbTqLY4B0s"}
+	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
 }
 
 export default function ListaCliente() {
@@ -35,7 +35,7 @@ export default function ListaCliente() {
 */
 	
 	return (
-		<Row>
+		<div>
 			<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
 			<Table striped>
 				<thead>
@@ -64,7 +64,7 @@ export default function ListaCliente() {
 					
 				</tbody>
 			</Table>
-		</Row>
+		</div>
 	);
 }
 

@@ -9,8 +9,9 @@ import axios from "axios";
 let baseUrl = "http://localhost:3001/lojistas/findbyid";
 
 let config = {
-	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM"}
+	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
 }
+console.log(config);
 
 export default function CadastroLogista() {
 	let [values, setValues] = React.useState({nome: "",  username: "", senha: "", confirma_senha: ""}); 
@@ -92,6 +93,7 @@ export default function CadastroLogista() {
 		}
 	}
 
+<<<<<<< Updated upstream
 	const addIconAndClass = (divAtual, status, statusName) => {
         divAtual.className =`form-item ${statusName}`;
         let img = document.createElement("img");
@@ -117,6 +119,8 @@ export default function CadastroLogista() {
         },
     }
 
+=======
+>>>>>>> Stashed changes
 	return (
 		<div className="div-form">
 			<DetailsBar icon="edit_note" page_name="Cadastro de Lojista" user_name="Gustavo Goulart" />
