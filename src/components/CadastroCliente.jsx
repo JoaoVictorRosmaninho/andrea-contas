@@ -15,10 +15,9 @@ let config = {
 const baseUrl = "http://localhost:3001/clientes/findbyid";
 
 export default function CadastroCliente() {
-
     const [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", observacoes: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
     const {id} = useParams();
-	
+	let buttonText = "Cadastrar";
     
     React.useEffect(() => {
         id && axios.get(baseUrl + `/${id}`, config)
@@ -49,7 +48,51 @@ export default function CadastroCliente() {
 		
 	}
 
-	let buttonText = "Cadastrar";
+	
+    const masks = {
+        cpf (value) {
+          return value
+            .replace(/\D+/g, '')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+            .replace(/(-\d{2})\d+?$/, '$1')
+        },
+
+        telefone (value) {
+          return value
+            .replace(/\D+/g, '')
+            .replace(/(\d{2})(\d)/, '($1) $2')
+            .replace(/(\d{4})(\d)/, '$1-$2')
+            .replace(/(\d{4})-(\d)(\d{4})/, '$1$2-$3')
+            .replace(/(-\d{4})\d+?$/, '$1')
+        },
+
+        cep (value) {
+          return value
+            .replace(/\D+/g, '')
+            .replace(/(\d{5})(\d)/, '$1-$2')
+            .replace(/(-\d{3})\d+?$/, '$1')
+        },
+
+        nomeProprio (value) {
+            value = value.toLowerCase().replace(/(?:^|\s)\S/g, function(a) {
+            return a.toUpperCase();
+            });
+
+            return value.replace(/\d+/g, '')
+        },
+
+        texto (value) {
+            return value
+        },
+
+        numero (value) {
+            return value
+            .replace(/\D+/g, '')
+        },
+    }
+      
 
     const isValidate = () => {
 		let count = 0;
@@ -70,6 +113,9 @@ export default function CadastroCliente() {
 	const validateInput = (divAtual) => {
 		let count = 0;
 		let inputAtual = divAtual.childNodes[1];
+        const field = inputAtual.dataset.js;
+        inputAtual.value = masks[field](inputAtual.value);
+        console.log(inputAtual.value);
 		if (inputAtual.value === '') {
 			count++;
 			divAtual.className ="form-item invalid";
@@ -111,7 +157,7 @@ export default function CadastroCliente() {
                             className="form-control" 
                             name="nome" 
                             onChange={onChangeEvent}
-                            value={values.nome}
+                            data-js="nomeProprio"
                         />
                         </div>
                     </Col>
@@ -122,9 +168,9 @@ export default function CadastroCliente() {
                             type="text" 
                             className="form-control" 
                             placeholder="Pereira Alburquerque" 
-                            name="sobrenome" 
+                            name="sobrenome"
                             onChange={onChangeEvent}
-                            value={values.sobrenome}
+                            data-js="nomeProprio"
                             />
                         </div>
                     </Col>
@@ -135,11 +181,11 @@ export default function CadastroCliente() {
                         <label htmlFor="" className="labelCPF">CPF:</label> 
                         <input 
                             type="text" 
-                            className="form-control" 
-                            placeholder="456.487.159-55" 
-                            name="cpf" 
+                            className="form-control"
+                            placeholder="456.487.159-55"
+                            name="cpf"
                             onChange={onChangeEvent}
-                            value={values.cpf}
+                            data-js="cpf"
                             />
                         </div>
                     </Col>
@@ -152,7 +198,7 @@ export default function CadastroCliente() {
                             placeholder="insira seu telefone" 
                             name="telefone" 
                             onChange={onChangeEvent}
-                            value={values.telefone}
+                            data-js="telefone"
                             />
                         </div>
                     </Col>
@@ -167,7 +213,7 @@ export default function CadastroCliente() {
                                 placeholder="Observações"
                                 name="observacoes"
                                 onChange={onChangeEvent}
-                                values={values.observacoes}
+                                data-js="texto"
                                 />
                         </div>
                     </Col>
@@ -184,7 +230,7 @@ export default function CadastroCliente() {
                             className="form-control" 
                             name="rua" 
                             onChange={onChangeEvent}
-                            value={values.rua}
+                            data-js="nomeProprio"
                             />
                         </div>
                     </Col>
@@ -197,7 +243,7 @@ export default function CadastroCliente() {
                             placeholder="Insira o nome do bairro" 
                             name="bairro" 
                             onChange={onChangeEvent}
-                            value={values.bairro}
+                            data-js="nomeProprio"
                             />
                         </div>
                     </Col>
@@ -212,7 +258,7 @@ export default function CadastroCliente() {
                             placeholder="Insira o numero da casa" 
                             name="numero" 
                             onChange={onChangeEvent}
-                            value={values.numero}
+                            data-js="numero"
                             />
                         </div>
                     </Col>
@@ -225,7 +271,7 @@ export default function CadastroCliente() {
                             placeholder="insira o nome da cidade" 
                             name="cidade" 
                             onChange={onChangeEvent}
-                            value={values.cidade}
+                            data-js="nomeProprio"
                             />
                         </div>
                     </Col>
@@ -238,9 +284,9 @@ export default function CadastroCliente() {
                             type="text" 
                             placeholder="Insira o nome do estado" 
                             className="form-control" 
-                            name="estado" 
+                            name="nomeProprio" 
                             onChange={onChangeEvent}
-                            value={values.estado}
+                            data-js="nomeProprio"
                             />
                         </div>
                     </Col>
@@ -253,7 +299,7 @@ export default function CadastroCliente() {
                             placeholder="Insira o Cep" 
                             name="cep" 
                             onChange={onChangeEvent}
-                            values={values.cep}
+                            data-js="cep"
                             />
                         </div>
                     </Col>
