@@ -5,8 +5,8 @@ import DetailsBar from './DetailsBar';
 import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "./css/client-component.css"
-import "./css/form-validation.css"
+import "./css/client-component.css";
+import "./css/form-validation.css";
 
 let config = {
 	headers : {Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imd1c3Rhdm8iLCJpYXQiOjE2NTkyNzU1MTUsImV4cCI6MTY2NDQ1OTUxNSwic3ViIjoiOWE4OWYxNjMtODNkYi00YjU2LTk2NjAtYjQ1MGI4OTNmZWViIn0.W-IPXe5eBpuMmFevTPY9epGbOwXCSDpeubHhgX3VjrM"}
@@ -18,19 +18,19 @@ export default function CadastroCliente() {
     const [values, setValues] = React.useState({nome: "",  sobrenome: "", cpf: "", email: "", telefone: "", observacoes: "", bairro: "", rua: "", cep: "", cidade: "", estado: "", numero: ""});
     const {id} = useParams();
 	let buttonText = "Cadastrar";
-    
+
     React.useEffect(() => {
         id && axios.get(baseUrl + `/${id}`, config)
         .then((resp) => setValues(resp.data))
         .catch((err) => console.log(err));
     }, []);
-    
-    const onChangeEvent = (e) => {
-		const {name, value} = e.target;
-		setValues({...values,[name]:value});
 
+    const onChangeEvent = (e) => {
         const divAtual = e.target.parentElement;
 		validateInput(divAtual);
+
+        const {name, value} = e.target;
+		setValues({...values,[name]:value});
     }
 
 	const onSubmit = (e) => {
@@ -115,7 +115,6 @@ export default function CadastroCliente() {
 		let inputAtual = divAtual.childNodes[1];
         const field = inputAtual.dataset.js;
         inputAtual.value = masks[field](inputAtual.value);
-        console.log(inputAtual.value);
 		if (inputAtual.value === '') {
 			count++;
 			divAtual.className ="form-item invalid";
@@ -143,6 +142,8 @@ export default function CadastroCliente() {
 		}
 	}
 
+    console.log(values);
+
 	return (
 		<div className="div-form">
             <DetailsBar icon="edit_note" page_name="Cadastro de Clientes" user_name="Gustavo Goulart" />
@@ -155,9 +156,10 @@ export default function CadastroCliente() {
                         <input type="text" 
                             placeholder="Pedro Henrique" 
                             className="form-control" 
-                            name="nome" 
+                            name="nome"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.nome}
                         />
                         </div>
                     </Col>
@@ -171,6 +173,7 @@ export default function CadastroCliente() {
                             name="sobrenome"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.sobrenome}
                             />
                         </div>
                     </Col>
@@ -186,6 +189,7 @@ export default function CadastroCliente() {
                             name="cpf"
                             onChange={onChangeEvent}
                             data-js="cpf"
+                            value={values.cpf}
                             />
                         </div>
                     </Col>
@@ -199,6 +203,7 @@ export default function CadastroCliente() {
                             name="telefone" 
                             onChange={onChangeEvent}
                             data-js="telefone"
+                            value={values.telefone}
                             />
                         </div>
                     </Col>
@@ -214,6 +219,7 @@ export default function CadastroCliente() {
                                 name="observacoes"
                                 onChange={onChangeEvent}
                                 data-js="texto"
+                                value={values.observacoes}
                                 />
                         </div>
                     </Col>
@@ -231,19 +237,21 @@ export default function CadastroCliente() {
                             name="rua" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.rua}
                             />
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className="form-item"> 
                         <label htmlFor="" className="labelBairro">Bairro:</label> 
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Insira o nome do bairro" 
-                            name="bairro" 
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Insira o nome do bairro"
+                            name="bairro"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.bairro}
                             />
                         </div>
                     </Col>
@@ -259,6 +267,7 @@ export default function CadastroCliente() {
                             name="numero" 
                             onChange={onChangeEvent}
                             data-js="numero"
+                            value={values.numero}
                             />
                         </div>
                     </Col>
@@ -272,6 +281,7 @@ export default function CadastroCliente() {
                             name="cidade" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.cidade}
                             />
                         </div>
                     </Col>
@@ -287,6 +297,7 @@ export default function CadastroCliente() {
                             name="nomeProprio" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
+                            value={values.estado}
                             />
                         </div>
                     </Col>
@@ -300,6 +311,7 @@ export default function CadastroCliente() {
                             name="cep" 
                             onChange={onChangeEvent}
                             data-js="cep"
+                            value={values.cep}
                             />
                         </div>
                     </Col>
