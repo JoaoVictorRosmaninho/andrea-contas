@@ -32,7 +32,7 @@ export default function Login() {
 	  <Container>
 		<Row>
 			<div className="form-login">
-				<div className="form-item">
+				<div>
 					<label htmlFor="" className="labelSobrenome">Username:</label> 
 					<input 
 						type="text" 
@@ -42,7 +42,7 @@ export default function Login() {
 						onChange={(e) => onChangeEvent(e)}
 						/>
 				</div>
-			<div className="form-item">
+			<div>
 				<label htmlFor="" className="labelSobrenome">password:</label>
 					<input 
 						type="text" 
