@@ -4,6 +4,7 @@ import DetailsBar from './DetailsBar';
 import React from "react";
 import "./css/logista-component.css"
 import "./css/form-validation.css"
+import MyNavBar from '../components/NavBar';
 import axios from "axios";
 
 let baseUrl = "http://localhost:3001/lojistas/findbyid";
@@ -119,8 +120,10 @@ export default function CadastroLogista() {
     }
 
 	return (
-		<div className="div-form">
+		<div>
+			<MyNavBar />
 			<DetailsBar icon="edit_note" page_name="Cadastro de Lojista" user_name="Gustavo Goulart" />
+			<div className="div-form">
 			<form className="needs-validation formCadLojista">
 				<div className="formElements" id="formElements">
 				<div className="form-item">
@@ -191,6 +194,7 @@ export default function CadastroLogista() {
 				</div>
 				</div>
 			</form>
+		</div>
 		</div>
 	)
 }

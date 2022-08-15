@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import axios from 'axios';
 import { Row } from "react-bootstrap";
 import DetailsBar from './DetailsBar';
+import MyNavBar from '../components/NavBar';
 import "./css/logista-component.css"
 
 
@@ -36,6 +37,7 @@ export default function ListaCliente() {
 	
 	return (
 		<div>
+			<MyNavBar/>
 			<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
 			<Table striped>
 				<thead>

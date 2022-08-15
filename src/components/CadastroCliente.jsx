@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import DetailsBar from './DetailsBar';
+import MyNavBar from '../components/NavBar';
 import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -163,8 +164,10 @@ export default function CadastroCliente() {
     }
 
 	return (
-		<div className="div-form">
+        <div>
+            <MyNavBar />
             <DetailsBar icon="edit_note" page_name="Cadastro de Clientes" user_name="Gustavo Goulart" />
+            <div className="div-form">
 			<form>
                <div> <label htmlFor="" className="bottom-border"> Pessoa </label>  </div> 
                 <Row>
@@ -339,5 +342,6 @@ export default function CadastroCliente() {
                 </div>
 			</form>
 		</div>
+        </div>
 	)
 }

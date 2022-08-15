@@ -176,6 +176,8 @@ th, td {
 	width: 90%;
 	margin: auto;
 	margin-top: 45px;
+	position: relative;
+	left: 40px;
 }
 
 .form-login {

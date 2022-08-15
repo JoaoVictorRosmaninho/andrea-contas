@@ -2,6 +2,7 @@ import { Button } from "react-bootstrap"
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import DetailsBar from './DetailsBar';
+import MyNavBar from '../components/NavBar';
 import AsyncSelect, { useAsync } from 'react-select/async';
 import { createFilter } from 'react-select'
 import React from "react";
@@ -161,8 +162,10 @@ export default function CadastroContas() {
     }
 
 	return (
-		<div className="div-form">
+		<div>
+			<MyNavBar />
 			<DetailsBar icon="edit_note" page_name="Cadastro de Clientes" user_name="Gustavo Goulart" />
+			<div className="div-form">
 			<form>
 				<div> <label htmlFor="" className="bottom-border"> Pessoa </label>  </div> 
 				<Row id="rowSelect">
@@ -237,6 +240,7 @@ export default function CadastroContas() {
 				</div>
 				</Row>
 			</form>
+		</div>
 		</div>
 	)
 }

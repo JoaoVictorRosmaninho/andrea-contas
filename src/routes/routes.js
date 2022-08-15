@@ -14,7 +14,6 @@ const Rotas = () => {
 
   <BrowserRouter>
     <Container fluid="fluid">
-      <MyNavBar/>
       <Routes> 
         <Route element={<CadastroLogista/>} path="/Logistas/new/"/>
         <Route element={<CadastroLogista/>} path="/Logistas/edit/:id"/>

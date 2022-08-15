@@ -5,6 +5,8 @@ import DetailsBar from './DetailsBar';
 import React from "react";
 import "./css/logista-component.css"
 import axios from "axios";
+import MyNavBar from '../components/NavBar';
+
 
 
 let baseUrl = "http://localhost:3001/lojistas"
@@ -36,6 +38,7 @@ export default function ListaLogista() {
 
 	return (
 	<div>
+		<MyNavBar/>
 		<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
             <Table className="ms-3" striped style={{"position":"relative", "left": "100px"}}>
                 <thead>
