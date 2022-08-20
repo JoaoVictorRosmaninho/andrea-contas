@@ -20,11 +20,9 @@ export default function CadastroLogista() {
 	let buttonText = id ? "Atualizar" : "Cadastrar";
 
 	React.useEffect(() => {
-		if ((values.id === '') && (id !== '')){
-			id && axios.get(baseUrl + `/${id}`, config)
+		id && axios.get(baseUrl + `/${id}`, config)
 			.then((resp) => setValues(resp.data))
 			.catch((err) => console.log(err));
-		}
 	}, []);
 	
 
@@ -42,11 +40,17 @@ export default function CadastroLogista() {
 		if (isValidate()){
 			if (id) {
 				axios.patch(`http://localhost:3001/lojistas/update/${id}`, values, config) 
-				.then(() => setValues({nome: "", username: "", senha: "", confirma_senha: ""}))
+				.then(() => { 
+					window.alert("Logista Atualizado com sucesso!")
+					setValues({nome: "", username: "", senha: "", confirma_senha: ""})
+				})
 				.catch((err) => console.log(err))
 			} else {
 			 axios.post("http://localhost:3001/lojistas", values, config)
-				.then(() => setValues({nome: "", username: "", senha: ""}))
+				.then(() => {
+					window.alert("Lojista cadastrado com sucesso!")
+					setValues({nome: "", username: "", senha: ""})
+				})
 				.catch((err) => console.log(err))
 			}
 		}
@@ -118,7 +122,7 @@ export default function CadastroLogista() {
             return value
         },
     }
-
+	console.log(values)
 	return (
 		<div>
 			<MyNavBar />

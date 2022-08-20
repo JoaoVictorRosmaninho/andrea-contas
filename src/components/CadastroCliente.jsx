@@ -55,7 +55,7 @@ export default function CadastroCliente() {
 
         if(isValidate()){
             axios.post("http://localhost:3001/clientes", values, config)
-			.then()
+			.then(() => window.alert("Cadastro realizado com sucesso!"))
 			.catch ((err) => {
                 console.log(err)
             })
@@ -162,7 +162,7 @@ export default function CadastroCliente() {
             .replace(/\D+/g, '')
         },
     }
-
+    console.log(values)
 	return (
         <div>
             <MyNavBar />
@@ -258,7 +258,7 @@ export default function CadastroCliente() {
                             name="rua"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
-                            value={values.rua}
+                            value={values.endereco ? values.endereco.rua : values.rua}
                             />
                         </div>
                     </Col>
@@ -272,7 +272,7 @@ export default function CadastroCliente() {
                             name="bairro"
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
-                            value={values.bairro}
+                            value={values.endereco ? values.endereco.bairro : values.bairro}
                             />
                         </div>
                     </Col>
@@ -288,7 +288,7 @@ export default function CadastroCliente() {
                             name="numero" 
                             onChange={onChangeEvent}
                             data-js="numero"
-                            value={values.numero}
+                            value={values.endereco ? values.endereco.numero : values.numero} 
                             />
                         </div>
                     </Col>
@@ -302,7 +302,7 @@ export default function CadastroCliente() {
                             name="cidade" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
-                            value={values.cidade}
+                            value={values.endereco ? values.endereco.cidade : values.cidade}
                             />
                         </div>
                     </Col>
@@ -318,7 +318,7 @@ export default function CadastroCliente() {
                             name="estado" 
                             onChange={onChangeEvent}
                             data-js="nomeProprio"
-                            value={values.estado}
+                            value={values.endereco ? values.endereco.estado : values.estado}
                             />
                         </div>
                     </Col>
@@ -332,7 +332,7 @@ export default function CadastroCliente() {
                             name="cep" 
                             onChange={onChangeEvent}
                             data-js="cep"
-                            value={values.cep}
+                            value={values.endereco ? values.endereco.cep : values.cep}
                             />
                         </div>
                     </Col>

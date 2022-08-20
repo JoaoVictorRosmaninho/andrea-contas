@@ -30,7 +30,7 @@ const loadOptions = (Url, name) => {
 
 export default function CadastroContas() {
 	let buttonText = "Cadastrar";
-	const  [values, setValues] = React.useState({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fk_id_cliente: ""});
+	const  [values, setValues] = React.useState({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fkIdCliente: ""});
 	const  [clientes, setClientes] = React.useState([]);
 
 	React.useEffect(() => {
@@ -59,21 +59,27 @@ export default function CadastroContas() {
 		let count = 0;
 		let inputData = document.getElementById('inputData');
 
+		/*
 		if(!(validaData(inputData))){
 			alert("Preencha todos os campos!");
 		}else{
 			count++;
 		}
+		*/
 
-		if((isValidate()) && (count === 1)){
+		//if((isValidate()) && (count === 1)){
 			axios.post("http://localhost:3001/contas", values, config)
-			.then(() => setValues({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fk_id_cliente: ""}))
+			.then(() => { 
+				window.alert("Registro Efetuado com sucesso!")
+				setValues({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fkIdCliente: ""}) 
+			})
 			.catch ((err) => {
 				console.log(err)
+				window.alert(err.response.data.message)
 			});
-		}else {
-			alert("Preencha todos os campos!");
-		}
+		//}else {
+		//	alert("Preencha todos os campos!");
+		//}
 	}
 
 	const isValidate = () => {
@@ -95,7 +101,6 @@ export default function CadastroContas() {
 	const validateInput = (divAtual) => {
 		let count = 0;
 		let inputAtual = divAtual.childNodes[1];
-		console.log(inputAtual.value);
 		const field = inputAtual.dataset.js;
         inputAtual.value = masks[field](inputAtual.value);
 
@@ -114,7 +119,6 @@ export default function CadastroContas() {
 	}
 
 	const validaData = (inputData) => {
-		console.log("oi");
 		console.log(inputData.value);
 		let count = 0;
 		for (let index = 0; index < inputData.value.length; index++) {
@@ -161,6 +165,7 @@ export default function CadastroContas() {
         },
     }
 
+	console.log(values)
 	return (
 		<div>
 			<MyNavBar />
@@ -172,7 +177,7 @@ export default function CadastroContas() {
 				<AsyncSelect
 					cacheOptions
 					defaultOptions
-					onChange={(e) => onChangeEvent(e, "fk_id_cliente")} 
+					onChange={(e) => onChangeEvent(e, "fkIdCliente")} 
 					loadOptions={() => loadOptions("http://localhost:3001/clientes", "nome")}
 					filterOption={createFilter({ ignoreAccents: false })}
 					/>
@@ -188,6 +193,7 @@ export default function CadastroContas() {
 						onChange={onChangeEvent}
 						data-js="texto"
 						value={values.observacoes}
+						required
 						/>
 						</div>
 					</Col>
@@ -201,6 +207,7 @@ export default function CadastroContas() {
 						onChange={onChangeEvent}
 						data-js="numero"
 						value={values.numeroParcelas}
+						required
 						/>
 						</div>
 					</Col>
@@ -211,11 +218,12 @@ export default function CadastroContas() {
 						<label htmlFor="valorInicial" className="labelValorInicial">Valor Inicial:</label> 
 						<input type="text"
 						className="form-control"
-						placeholder="456.487.159-55"
+						placeholder="Entre com o valor inicial"
 						name="valorInicial"
 						onChange={onChangeEvent}
 						data-js="dinheiro"
 						value={values.valorInicial}
+						required
 						/>
 						</div>
 					</Col>
@@ -230,6 +238,7 @@ export default function CadastroContas() {
 						onChange={onChangeEvent}
 						data-js="texto"
 						value={values.dataVencimentoInicial}
+						required
 						/>
 						</div>
 					</Col>
