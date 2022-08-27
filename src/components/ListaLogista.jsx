@@ -6,18 +6,22 @@ import React from "react";
 import "./css/logista-component.css"
 import axios from "axios";
 import MyNavBar from '../components/NavBar';
+import { parseCookies } from 'nookies';
 
 
 
 let baseUrl = "http://localhost:3001/lojistas"
 
+const cookies = parseCookies();
+
 let config = {
-	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
+	headers : {Authorization: "Bearer " + cookies.token}
 }
 
 
 export default function ListaLogista() {
     const [values, setValues] = React.useState([]);
+	
 
     React.useEffect(() => {
         axios.get(baseUrl, config)

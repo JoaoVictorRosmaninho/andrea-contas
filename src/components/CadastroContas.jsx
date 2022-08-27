@@ -7,10 +7,13 @@ import AsyncSelect, { useAsync } from 'react-select/async';
 import { createFilter } from 'react-select'
 import React from "react";
 import axios from "axios";
-import "./css/client-component.css"
+import "./css/client-component.css";
+import { parseCookies } from 'nookies'
+
+const cookies = parseCookies();
 
 let config = {
-	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
+	headers : {Authorization: "Bearer " + cookies.token}
 }
 
 
@@ -30,7 +33,13 @@ const loadOptions = (Url, name) => {
 
 export default function CadastroContas() {
 	let buttonText = "Cadastrar";
-	const  [values, setValues] = React.useState({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fkIdCliente: ""});
+	const  [values, setValues] = React.useState({
+			observacoes: "", 
+			numeroParcelas: "", 
+			valorInicial: "", 
+			dataVencimentoInicial: "", 
+			fkIdCliente: "" 
+		});
 	const  [clientes, setClientes] = React.useState([]);
 
 	React.useEffect(() => {

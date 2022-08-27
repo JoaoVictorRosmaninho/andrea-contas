@@ -6,13 +6,15 @@ import "./css/logista-component.css"
 import "./css/form-validation.css"
 import MyNavBar from '../components/NavBar';
 import axios from "axios";
+import { parseCookies } from 'nookies'
 
 let baseUrl = "http://localhost:3001/lojistas/findbyid";
 
+const cookies = parseCookies();
+
 let config = {
-	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
+	headers : {Authorization: "Bearer " + cookies.token}
 }
-console.log(config);
 
 export default function CadastroLogista() {
 	let [values, setValues] = React.useState({nome: "",  username: "", senha: "", confirma_senha: ""}); 

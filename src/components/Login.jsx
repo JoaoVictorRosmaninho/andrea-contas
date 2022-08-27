@@ -4,7 +4,10 @@ import { Container } from "react-bootstrap";
 import React  from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { setCookie, destroyCookie, parseCookies } from "nookies";
+import { setCookie } from "nookies";
+
+
+
 
 export default function Login() {
   const [values, setValues] = React.useState({username: "", senha: ""});
@@ -20,7 +23,14 @@ export default function Login() {
   const onSubmit = () => {
 	axios.post("http://localhost:3001/sessions", values)
 		.then((resp) => {
-			localStorage.setItem('REACT_TOKEN_AUTH', resp.data.token);
+			setCookie(null, 'client', values.username, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/'
+			})
+			setCookie(null, 'token', resp.data.token, {
+				maxAge: 30 * 24 * 60 * 60,
+				path: '/'
+			})
 			navigate("/Logistas", { replace: true })
 
 		})

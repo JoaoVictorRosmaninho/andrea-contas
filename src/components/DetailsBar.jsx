@@ -1,6 +1,18 @@
 import './css/logista-component.css';
 import Row from 'react-bootstrap/Row';
-function DetailsBar({icon,page_name,user_name}) {
+import { parseCookies } from 'nookies';
+
+
+
+function DetailsBar({icon,page_name}) {
+    const cookies = parseCookies();
+    const paths = {
+        "/Logistas/new": "Cadastro de Logista", 
+        "/Logistas": "Listar logistas", 
+        "/Clientes/new": "Cadastrar Clientes",
+        "/Clientes": "Listar Clientes", 
+        "/Contas/new": "Cadastro de Contas"
+    }
     return (
         <Row>
             <div className="DetailsBar">
@@ -8,14 +20,13 @@ function DetailsBar({icon,page_name,user_name}) {
                     <span className="material-icons">
                         {icon}
                     </span>
-                    <span>{page_name}</span>
+                    <span>{paths[window.location.pathname] || window.location.pathname}</span>
                 </div>
                 <div className='details-itens'>
-                    <span>Lojista</span>
                     <span className="material-icons">
                         account_circle
                     </span>
-                    <span>{user_name}</span>
+                    <span>{cookies.client}</span>
                 </div>
                 
             </div>

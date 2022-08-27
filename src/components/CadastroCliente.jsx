@@ -8,9 +8,12 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./css/client-component.css";
 import "./css/form-validation.css";
+import { parseCookies } from 'nookies'
+
+const cookies = parseCookies();
 
 let config = {
-	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
+	headers : {Authorization: "Bearer " + cookies.token}
 }
 
 const baseUrl = "http://localhost:3001/clientes/findbyid";

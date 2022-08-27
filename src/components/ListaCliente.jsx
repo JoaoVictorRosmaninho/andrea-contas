@@ -6,13 +6,17 @@ import { Row } from "react-bootstrap";
 import DetailsBar from './DetailsBar';
 import MyNavBar from '../components/NavBar';
 import "./css/logista-component.css"
+import { parseCookies } from 'nookies'
 
 
 let baseUrl = "http://localhost:3001/clientes"
 
+const cookies = parseCookies();
+
 let config = {
-	headers : {Authorization: "Bearer " + localStorage.getItem("REACT_TOKEN_AUTH")}
+	headers : {Authorization: "Bearer " + cookies.token}
 }
+
 
 export default function ListaCliente() {
 	const [values, setValues] = React.useState([]);
