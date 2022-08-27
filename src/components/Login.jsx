@@ -9,6 +9,7 @@ import { setCookie } from "nookies";
 
 
 
+
 export default function Login() {
   const [values, setValues] = React.useState({username: "", senha: ""});
   let navigate = useNavigate();
@@ -35,7 +36,8 @@ export default function Login() {
 
 		})
 		.catch((err) => {
-			console.log("erro")
+			window.alert(err)
+			console.log(err)
 		})
   }
 

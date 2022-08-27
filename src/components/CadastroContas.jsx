@@ -35,8 +35,8 @@ export default function CadastroContas() {
 	let buttonText = "Cadastrar";
 	const  [values, setValues] = React.useState({
 			observacoes: "", 
-			numeroParcelas: "", 
-			valorInicial: "", 
+			numeroParcelas: 0, 
+			valorInicial: 0, 
 			dataVencimentoInicial: "", 
 			fkIdCliente: "" 
 		});
@@ -50,34 +50,26 @@ export default function CadastroContas() {
 
 
 	const onChangeEvent = (e, name) => {
-		if(!name){
-			const divAtual = e.target.parentElement;
-			validateInput(divAtual);
-		}
-
 		if (name) {
 			setValues({...values, [name]:e.value})
 		} else {
 			const {name, value} = e.target;
-			setValues({...values,[name]:value});
+			if (name === "numeroParcelas" || name === "valorInicial") {
+				setValues({...values, [name]:Number(value)});
+			} else if (name === "dataVencimentoInicial") {
+				const date = new Date(value).toISOString();
+				setValues({...values, [name]: date})
+			} else {
+				setValues({...values,[name]:value});
+			}
+			
 		}
 	}
 
 	const onSubmit = (e) => {
 		e.preventDefault();
-		let count = 0;
-		let inputData = document.getElementById('inputData');
 
-		/*
-		if(!(validaData(inputData))){
-			alert("Preencha todos os campos!");
-		}else{
-			count++;
-		}
-		*/
-
-		//if((isValidate()) && (count === 1)){
-			axios.post("http://localhost:3001/contas", values, config)
+		axios.post("http://localhost:3001/contas", values, config)
 			.then(() => { 
 				window.alert("Registro Efetuado com sucesso!")
 				setValues({observacoes: "",  numeroParcelas: "", valorInicial: "", dataVencimentoInicial: "", fkIdCliente: ""}) 
@@ -86,25 +78,6 @@ export default function CadastroContas() {
 				console.log(err)
 				window.alert(err.response.data.message)
 			});
-		//}else {
-		//	alert("Preencha todos os campos!");
-		//}
-	}
-
-	const isValidate = () => {
-		let count = 0;
-		const formArray = document.getElementsByClassName('form-item');
-		for (let index = 0; index < formArray.length - 1; index++) {
-			let divAtual = formArray[index];
-			if(!validateInput(divAtual)){
-				count++;
-			}
-		}
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
 	}
 
 	const validateInput = (divAtual) => {
@@ -246,7 +219,6 @@ export default function CadastroContas() {
 						name="dataVencimentoInicial"
 						onChange={onChangeEvent}
 						data-js="texto"
-						value={values.dataVencimentoInicial}
 						required
 						/>
 						</div>
