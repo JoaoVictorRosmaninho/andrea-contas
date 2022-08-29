@@ -1,0 +1,29 @@
+.modal-lg, .modal-xl {
+    --bs-modal-width: 1000px;
+}
+
+.modal-body span {
+    margin-left: 15px;
+}
+
+.table, .table-striped {
+    padding: 0;
+    margin: 0;
+}
+
+.tablesContas {
+    max-height: 320px;
+    overflow-y: scroll;
+}
+
+.tablesContas th{
+    background-color: blue;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: start;
+}
