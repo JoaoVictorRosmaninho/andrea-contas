@@ -60,7 +60,7 @@ export default function Table(props) {
                     props.setContas(resp.data)
                 })
                 .catch((err) => {
-                    window.alert(err.data)
+                    window.alert("Erro ao atualizar tabela")
                 })
               } else if (props.type === "periodo") {
                 if (props.data.startDate && props.data.endDate) {
@@ -76,7 +76,36 @@ export default function Table(props) {
           })
       }
 
+      const inativarConta = (id) => {
+          axios.patch(`http://localhost:3001/contas/inativarconta/${id}`, {}, config)
+          .then(() => {
+              window.alert("conta desabilitada com sucesso!");
+              if (props.type === "cliente") {
+                axios.post("http://localhost:3001/contas/list",  {cliente: props.id, ativo: true}, config)
+                .then((resp) => {
+                    props.setContas(resp.data)
+                })
+                .catch((err) => {
+                    window.alert("Erro ao atualizar tabela")
+                })
+              } else if (props.type === "periodo") {
+                if (props.data.startDate && props.data.endDate) {
+                    axios.post("http://localhost:3001/contas/list", props.data, config)
+                        .then(resp => props.setContas(resp.data))
+                        .catch(resp => window.alert("Erro ao atualizar tabela"))
+                }
+              }
+
+          })
+      }
+
     const [columnDefs] = React.useState([
+        {
+           headerName: 'Cliente', 
+           field: "cliente.nome", 
+           filter: 'agNumberColumnFilter',
+           cellStyle: {textAlign: 'center'}
+        },
 		{ 
             headerName: 'Valor Atual', 
             field: "valorAtual",
@@ -134,15 +163,25 @@ export default function Table(props) {
             headerName: 'Ações',  
             cellStyle: {textAlign: 'center'},
             cellRenderer: (params) => (
+                    <div>
                         <Button 
-                            style={{height: "33px", width: "80%"}}
+                            style={{height: "33px", width: "50%", fontSize: "14px"}}
                             onClick={(e) => setModal({
                                         id: params.data.id, 
                                         modal: true, 
                                         observacoes: params.data.observacoes, 
                                         valorParcela: params.data.valorParcela
                                     })}
-                            >Pagar</Button>)
+                            >
+                                Pagar
+                        </Button>
+                        <Button style={{height: "33px", width: "50%", fontSize: "14px", marginLeft: "3px"}}
+                            onClick={() => inativarConta(params.data.id)}
+                        >
+                            Inativar
+                        </Button>
+                    </div>
+                )
         }
 	])
 

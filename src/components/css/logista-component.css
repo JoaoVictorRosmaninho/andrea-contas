@@ -211,3 +211,22 @@ body {
 .form-login input {
 	width: 100%;
 }
+
+.div-relatorio {
+	width: 100%; 
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(33,37,41);
+	color: white;
+	border-bottom: 3px solid rgb(162,164,165);
+}
+
+.div-relatorio > span {
+	padding: 10px;
+}
+
+.ag-header-cell-label {
+	justify-content: center;
+ }

@@ -50,55 +50,80 @@ export default function() {
 			<MyNavBar />
 			<Row className="mt-4">
 				<Col>
-					<span> Faturamento Total: <NumberFormat 
+					<div className="div-relatorio">
+						<span> Faturamento Total: <NumberFormat 
 												value={Number(boletimTotal.faturamentoTotal)}
 												prefix={"R$ "}
 												decimalScale={2} 
 											/></span>
+					</div>
 				</Col>
 			</Row>
 			<Row className="mt-4">
 				<Col sm={4}>
-					<span> Total a receber:  <NumberFormat prefix={"R$ "} decimalScale={2} value={Number(totalAReceber) + Number(totalAReceberInadimplentes)} /> </span>
+					<div className="div-relatorio">
+						<span> Total a receber:  <NumberFormat prefix={"R$ "} decimalScale={2} value={Number(totalAReceber) + Number(totalAReceberInadimplentes)} /> </span>
+					</div>
 				</Col> 
 				<Col sm={4} >
+					<div className="div-relatorio">
 					<span> Total a receber de clientes Adimplentes : <NumberFormat prefix={"R$ "} decimalScale={2} value={Number(totalAReceber)} /> </span>
+					</div>		
 				</Col>
 				<Col sm={4} >
+					<div className="div-relatorio">
 					<span> Total a receber de Inadimplentes: <NumberFormat prefix={"R$ "} decimalScale={2} value={Number(totalAReceberInadimplentes)} /> </span>
+					</div>	
 				</Col>
 			</Row> 
 			<Row className="mt-4">
 				<Col sm={4} >
-					<span> Total de Clientes Inamdiplentes: { boletimTotal.clientesInadimplentes } </span>
+					<div className="div-relatorio">
+						<span> Total de Clientes Inamdiplentes: { boletimTotal.clientesInadimplentes } </span>
+					</div>
 				</Col>
 				<Col sm={4} >
-					<span> Total de clientes Adimplentes: { boletimTotal.clientesAdimplentes } </span>
+					<div className="div-relatorio">
+						<span> Total de clientes Adimplentes: { boletimTotal.clientesAdimplentes } </span>
+					</div>
+					
 				</Col>
 				<Col sm={4} >
-					<span> Total de clientes: { Number(boletimTotal.clientesAdimplentes) + Number(boletimTotal.clientesInadimplentes) } </span>
+					<div className="div-relatorio">
+						<span> Total de clientes: { Number(boletimTotal.clientesAdimplentes) + Number(boletimTotal.clientesInadimplentes) } </span>
+					</div>	
 				</Col>
 
 		   	</Row>
 			<Row className="mt-4">
 				<Col sm={4}>
-					<span>Total de contas: {boletimTotal.totalContas}</span>
+					<div className="div-relatorio">
+						<span>Total de contas: {boletimTotal.totalContas}</span>
+					</div>
 				</Col>
 				<Col sm={4}>
-					<span>Total de contas inativas: {boletimTotal.contasInativas}</span>
+					<div className="div-relatorio">
+						<span>Total de contas inativas: {boletimTotal.contasInativas}</span>
+					</div>
 				</Col>
 				<Col sm={4}>
-					<span>Total de contas ativas: {boletimTotal.contasAtivas}</span>
+					<div className="div-relatorio">
+						<span>Total de contas ativas: {boletimTotal.contasAtivas}</span>
+					</div>
 				</Col>
 			</Row>
 
 			<Row className="mt-4">
 				<Col sm={4}>
-					<span>Total de contas inadimpletes: {boletimTotal.contasInadimplentes}</span>
+					<div className="div-relatorio">
+						<span>Total de contas inadimpletes: {boletimTotal.contasInadimplentes}</span>
+					</div>
 				</Col>
-				<Col sm={4}>
-					<span>Total de contas adimplentes: {boletimTotal.contasAdimplentes}</span>
-				</Col>
+					<Col sm={4}>
+						<div className="div-relatorio">
+							<span>Total de contas adimplentes: {boletimTotal.contasAdimplentes}</span>
+						</div>
+					</Col>
 			</Row>
 		</div>
 	)

@@ -1,12 +1,13 @@
 import Table from 'react-bootstrap/Table';
 import React, { useState } from 'react';
-import { Button } from "react-bootstrap";
+import { Button, Row } from "react-bootstrap";
 import axios from 'axios';
 import DetailsBar from './DetailsBar';
 import MyNavBar from '../components/NavBar';
 import "./css/logista-component.css";
 import { parseCookies } from 'nookies';
 import PerfilCliente from './subcomponents/PerfilCliente';
+import TableClientes from './subcomponents/TableClientes'
 
 let baseUrl = "http://localhost:3001/clientes"
 
@@ -41,33 +42,9 @@ export default function ListaCliente() {
 		<div>
 			<MyNavBar/>
 			<DetailsBar icon="list" page_name="Listar Clientes" user_name="Gustavo Goulart" />
-			<Table striped>
-				<thead>
-					<tr>
-						<th>Cliente</th>
-						<th>CPF</th>
-						<th>Telefone</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					{
-					values.map((element) => {
-						return (
-							<tr>
-								<td>{element.nome}</td>
-								<td>{element.cpf}</td>
-								<td>{element.telefone}</td>
-								<td>
-									<Button className="table-buttons" ><a className="link" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
-									<Button className="table-buttons"  onClick={() => axios.delete(`http://localhost:3001/clientes/${element.id}`, config)}>Desabilitar</Button>
-									<Button variant="primary" onClick={() => {handleShow(); setTempId(element.id)}} >Perfil</Button>
-								</td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</Table>
+			<Row className="mt-4">
+				<TableClientes rowData={values} setRowData={setValues} setTempId={setTempId} handleShow={handleShow} /> 
+			</Row>
 			{
 				show === true ? <PerfilCliente show={handleShow} hide={handleClose} id={idCliente}/>: ''
 			}
