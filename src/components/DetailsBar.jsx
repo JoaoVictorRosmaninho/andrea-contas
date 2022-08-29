@@ -11,7 +11,9 @@ function DetailsBar({icon,page_name}) {
         "/Logistas": "Listar logistas", 
         "/Clientes/new": "Cadastrar Clientes",
         "/Clientes": "Listar Clientes", 
-        "/Contas/new": "Cadastro de Contas"
+        "/Contas/new": "Cadastro de Contas", 
+        "/Contas": "Listar Contas", 
+        "/relatorios/geral": "Relatorios"
     }
     return (
         <Row>

@@ -107,6 +107,7 @@ export default function Table(props) {
     const [columnDefs] = React.useState([
         {
            headerName: 'Cliente', 
+           width: 100,
            field: "cliente.nome", 
            filter: 'agNumberColumnFilter',
            cellStyle: {textAlign: 'center'}

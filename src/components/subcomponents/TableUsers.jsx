@@ -62,7 +62,7 @@ export default function TableUsers(props) {
                             Editar
                         </Button>
                         <Button style={{height: "33px", width: "40%"}} onClick={(e) => desabilitar(params.data.id)} >
-                            Desabilitar
+                            Deletar
                         </Button>
                     </span>
                 )

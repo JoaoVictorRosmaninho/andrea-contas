@@ -4,6 +4,7 @@ import { Col, Row } from "react-bootstrap";
 import axios from "axios";
 import { parseCookies } from "nookies";
 import NumberFormat from "../utils/NumberFormat/NumberFormat";
+import DetailsBar from "./DetailsBar";
 
 const cookies = parseCookies();
 
@@ -48,6 +49,7 @@ export default function() {
 	return (
 		<div>
 			<MyNavBar />
+			<DetailsBar />
 			<Row className="mt-4">
 				<Col>
 					<div className="div-relatorio">

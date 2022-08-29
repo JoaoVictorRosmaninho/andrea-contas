@@ -62,7 +62,7 @@ export default function TableClientes(props) {
                             Editar
                         </Button>
                         <Button style={{height: "33px", width: "20%", fontSize: "14px"}} onClick={(e) => desabilitar(params.data.id)} >
-                            Desabilitar
+                            Deletar
                         </Button>
                         <Button style={{height: "33px", width: "20%", fontSize: "14px"}} onClick={() => {props.handleShow(); props.setTempId(params.data.id)}}>
                             Perfil

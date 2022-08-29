@@ -48,8 +48,7 @@ export default function PerfilCliente({show, hide, id}) {
                 <Modal.Title><span>Foto de perfil aqui</span>{valuesCliente.nome}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <span>Ultima Conta Aberta em: {lengthValuesContas(valuesContas) !== 0 ? valuesContas[0].criadoEm: ''}</span>
-                <span>Ultimo Pagamento em: </span>
+                <span>Ultima Conta Aberta em: {lengthValuesContas(valuesContas) !== 0 ? new Date(valuesContas[0].criadoEm).toLocaleDateString(): ''}</span>
                 <div className="tablesContas">
                     <Table striped>
                         <thead>
@@ -70,9 +69,6 @@ export default function PerfilCliente({show, hide, id}) {
                                         <td>{element.valorAtual}</td>
                                         <td>{element.dataVencimentoAtual}</td>
                                         <td>{element.numeroParcelasAtual}</td>
-                                        <td>
-                                            <Button className="table-buttons" ><a className="link">Pagar Conta</a></Button>
-                                        </td>
                                     </tr>
                                 );
                             })}

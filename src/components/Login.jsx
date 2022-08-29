@@ -58,7 +58,7 @@ export default function Login() {
 			<div>
 				<label htmlFor="" className="labelSobrenome">password:</label>
 					<input 
-						type="text" 
+						type="password" 
 						className="form-control" 
 						placeholder="Login"
 						name="senha" 

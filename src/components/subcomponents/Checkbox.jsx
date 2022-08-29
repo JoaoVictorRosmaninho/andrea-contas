@@ -11,7 +11,7 @@ function Checkbox(props) {
   }
 
   return (
-    <Form>
+    <Form className='mt-1'>
         <div key={`inline-checkbox`} className="mb-3">
           <Form.Check
             inline
@@ -29,15 +29,6 @@ function Checkbox(props) {
             type="radio"
             id="periodo"
             onChange={onChangeValue}
-          />
-          <Form.Check
-            inline
-            label="Por Logista"
-            type="radio"
-            name="tipo"
-            id="logista"
-            onChange={onChangeValue}
-
           />
         </div>
     </Form>

@@ -43,7 +43,7 @@ export default function FindByPeriodo() {
         <Form>
             <Row>
                 <Col sm={6}>
-				    <div className="form-item">
+				    <div style={{marginTop: "20px"}}>
 						<label htmlFor="data" className="labelDataVencimentoInicial">Data Inicial:</label> 
 						<input
 						    id="inputData"
@@ -57,7 +57,7 @@ export default function FindByPeriodo() {
 					</div>
 				</Col>
                 <Col sm={6}>
-				    <div className="form-item">
+				    <div style={{marginTop: "20px", marginRight: "20px"}}>
 						<label htmlFor="data" className="labelDataVencimentoInicial">Data Final:</label> 
 						<input
 						    id="inputData"
@@ -72,7 +72,7 @@ export default function FindByPeriodo() {
 				</Col>
 
             </Row>
-            <Row>
+            <Row className="mt-3">
                 <Col sm={3}>
                     <Form.Check className="ml-3" 
                         type="switch"

@@ -41,6 +41,10 @@ export default function CadastroLogista() {
 
 		if (isValidate()){
 			if (id) {
+				if (values.senha !== values.confirma_senha) {
+					window.alert("As senhas não batem");
+					return; 
+				}
 				axios.patch(`http://localhost:3001/lojistas/update/${id}`, values, config) 
 				.then(() => { 
 					window.alert("Logista Atualizado com sucesso!")
@@ -129,7 +133,7 @@ export default function CadastroLogista() {
 		<div>
 			<MyNavBar />
 			<DetailsBar icon="edit_note" page_name="Cadastro de Lojista" user_name="Gustavo Goulart" />
-			<div className="div-form">
+			<div className="div-form mt-4">
 			<form className="needs-validation formCadLojista">
 				<div className="formElements" id="formElements">
 				<div className="form-item">
