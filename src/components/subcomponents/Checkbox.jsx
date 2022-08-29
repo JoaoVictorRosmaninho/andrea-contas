@@ -39,32 +39,6 @@ function Checkbox(props) {
             onChange={onChangeValue}
 
           />
-        <Form.Check
-            inline
-            label="Por Contas Ativas"
-            type="radio"
-            name="tipo"
-            id="contas_ativas"
-            onChange={onChangeValue}
-
-          />
-        <Form.Check
-            inline
-            label="Por Contas Inativas"
-            type="radio"
-            name="tipo"
-            id="contas_inativas"
-            onChange={onChangeValue}
-
-          />
-        <Form.Check
-            inline
-            label="Por Contas Inadimplentes"
-            type="radio"
-            name="tipo"
-            id="contas_inadimplentes"
-            onChange={onChangeValue}
-          />
         </div>
     </Form>
   );

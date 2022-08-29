@@ -1,6 +1,9 @@
 import React from "react";
 import MyNavBar from "./NavBar";
 import Checkbox from "./subcomponents/Checkbox";
+import FindByCliente from "./subcomponents/FindByCliente";
+import FindByPeriodo from "./subcomponents/FindByPeriodo";
+
 
 export default function ListaContas() {
     const [type, setType] = React.useState("");
@@ -10,11 +13,11 @@ export default function ListaContas() {
             <Checkbox type={type} setType={setType}/>
             {
                 type === "cliente" && 
-                <span>cliente</span>
+                <FindByCliente />
             }
             {
                 type == "periodo" && 
-                <span>periodo</span>
+                <FindByPeriodo/>
             }
         </div>
     )

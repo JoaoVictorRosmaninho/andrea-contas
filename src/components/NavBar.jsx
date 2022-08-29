@@ -28,6 +28,7 @@ function MyNavBar() {
             <NavDropdown title="Contas" id="basic-nav-dropdown">
               <NavDropdown.Item href="/Contas/new">Cadastrar Contas a Pagar</NavDropdown.Item>
               <NavDropdown.Item href="/Contas">Listar Contas</NavDropdown.Item>
+              <NavDropdown.Item href="/Contas">Pagamento</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Relatorios" id="basic-nav-dropdown">
               <NavDropdown.Item href="/Ativos/new">teste</NavDropdown.Item>

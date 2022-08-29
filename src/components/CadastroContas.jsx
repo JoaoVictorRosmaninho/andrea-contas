@@ -27,7 +27,7 @@ const loadOptions = (Url, name) => {
 			  options.push({label: element[name], value: element.id})
 			}) 
 			return options;       
-		})      
+		})
   }
 
 
@@ -80,42 +80,7 @@ export default function CadastroContas() {
 			});
 	}
 
-	const validateInput = (divAtual) => {
-		let count = 0;
-		let inputAtual = divAtual.childNodes[1];
-		const field = inputAtual.dataset.js;
-        inputAtual.value = masks[field](inputAtual.value);
 
-		if (inputAtual.value === '') {
-			count++;
-			addIconAndClass(divAtual, 'error', 'invalid');
-		}else {
-            addIconAndClass(divAtual, 'check', 'valid');
-		}
-
-		if(count === 0){
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	const validaData = (inputData) => {
-		console.log(inputData.value);
-		let count = 0;
-		for (let index = 0; index < inputData.value.length; index++) {
-			if(!isNaN(inputData.value)){
-				count++;
-			}
-		}
-
-		if(count === 8){
-			return true
-		}else{
-			addIconAndClass(inputData.parentElement, 'error', 'invalid');
-			return false;
-		}
-	}
 
 	const addIconAndClass = (divAtual, status, statusName) => {
         divAtual.className =`form-item ${statusName}`;
