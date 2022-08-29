@@ -3,8 +3,7 @@ import axios from "axios";
 import { Row, Col } from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
 import { parseCookies } from 'nookies';
-import { Button } from "react-bootstrap"
-import Table from "./Table";
+import Table from "./TableContas";
 
 const url = "http://localhost:3001/contas/list"
 const cookies = parseCookies();
@@ -15,6 +14,7 @@ let config = {
 export default function FindByPeriodo() {
     const [data, setData] = React.useState({startDate: "", endDate: "", ativo: true, inadimplentes: false}); 
     const [contas, setContas] = React.useState([]);
+    const [id, setId] = React.useState("");
 
     
     React.useEffect(() => {
@@ -93,7 +93,7 @@ export default function FindByPeriodo() {
                 </Col>
             </Row>
             <Row className="mt-4">
-                <Table rowData={contas} />
+                <Table rowData={contas} setContas={setContas} data={data}  type={"periodo"}/>
             </Row>
         </Form>
     )

@@ -3,7 +3,7 @@ import AsyncSelect from 'react-select/async';
 import { parseCookies } from 'nookies'
 import { createFilter } from 'react-select'
 import { Row } from "react-bootstrap";
-import Table from "./Table";
+import Table from "./TableContas";
 
 import axios from 'axios';
 
@@ -20,16 +20,6 @@ export default function FindByCliente() {
 
 	const [id, setId] = React.useState("");
 	const [contas, setContas] = React.useState([]);
-
-	const [columnDefs] = React.useState([
-		{ headerName: 'Valor Atual', field: "valorAtual" },
-		{ headerName: 'Valor Inicial', field: "valorInicial" },
-		{ headerName: 'Valor da Parcela', field: "valorParcela" }, 
-		{ headerName: 'Observação', field: "observacoes" }, 
-		{ headerName: 'Parcela Atual', field: "numeroParcelasAtual"},
-		{ headerName: 'Nº Parcelas Total', field: "numeroParcelas" },
-		{ headerName: 'Vencimento', field: "dataVencimentoFinal" },
-	])
 
 
 	const onChangeEvent = (e) => {
@@ -74,7 +64,7 @@ export default function FindByCliente() {
 			/>
 			</Row>
 			<Row className="mt-3">
-				<Table rowData={contas} setContas={setContas} id={id}></Table>
+				<Table rowData={contas} setContas={setContas} id={id} type={"cliente"}></Table>
 			</Row>
 		</div>
 	)

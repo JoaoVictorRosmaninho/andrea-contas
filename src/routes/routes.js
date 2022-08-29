@@ -8,6 +8,7 @@ import ListaLogista from "../components/ListaLogista";
 import CadastroConta from "../components/CadastroContas";
 import ListaContas from "../components/ListaContas";
 import Login from "../components/Login";
+import RelatorioGeral from "../components/RelatorioGeral";
 import { Container } from "react-bootstrap";
 import { parseCookies } from "nookies";
 
@@ -32,6 +33,7 @@ const Rotas = () => {
         <Route element={ isLogged? <CadastroCliente/> : <Navigate to="/"/> } path="/Clientes/edit/:id"/>
         <Route element={ isLogged? <CadastroConta/>   : <Navigate to="/"/> } path="/Contas/new"/>
         <Route element={ isLogged? <ListaContas/ >    : <Navigate to="/"/> } path="/Contas"/>
+        <Route element={ isLogged? <RelatorioGeral />      : <Navigate to="/"/> } path="/relatorios/geral"/>
         <Route element={<Login/>} path="/"/>
       </Routes>
     </Container>
