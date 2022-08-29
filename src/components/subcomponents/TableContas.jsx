@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap"
 import { Container, Row, Col } from "react-bootstrap";
 import { parseCookies } from "nookies";
 import Modal from 'react-modal';
+import "../css/modal-TableContas.css";
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -20,7 +21,7 @@ const config = {
 
 const customStyles = {
     content: {
-      height: '200px',
+      height: '270px',
       width: '50%',
       top: '25%',
       left: '50%',
@@ -28,8 +29,12 @@ const customStyles = {
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
-      backgroundColor: 'grey'
+      backgroundColor: 'white',
+      padding: '0',
     },
+    overlay: {
+        backgroundColor: 'rgba(10, 10, 10, 0.60)'
+    }
   };
 
 export default function Table(props) {
@@ -211,10 +216,11 @@ export default function Table(props) {
                     contentLabel="Example Modal"
                 >
                     <Container>
-                        <Row>
-                            <span>Observação: {modal.observacoes}</span>
-                        </Row>
-                        <Row>
+                        <div className="row2">
+                            <span id="titulo">Observação: {modal.observacoes}</span>
+                        </div>
+                        <div className="linha"></div>
+                        <div className="row2">
                             <span>
                                 Valor da Parcela: 
                                 <input type="text"
@@ -226,12 +232,15 @@ export default function Table(props) {
 						            required
 						        />
                             </span>
-                        </Row>
-
-                        <Button 
-                            onClick={efetuarPagamento}>
-                                Efetuar Pagamento
-                        </Button>
+                        </div>
+                        <div className="linha"></div>
+                        <div id="btnPagar">
+                            <Button
+                                onClick={efetuarPagamento}>
+                                    Efetuar Pagamento
+                            </Button>
+                        </div>
+                        
                     </Container>
                     
                 </Modal> 

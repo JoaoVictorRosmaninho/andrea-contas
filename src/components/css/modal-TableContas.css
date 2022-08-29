@@ -1,0 +1,38 @@
+#titulo {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+#btnPagar {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+    padding-right: 15px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+}
+
+.linha {
+    width: 100%;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+span {
+    padding: 0 15px 0 15px;
+}
+
+.form-control {
+    width: 300px;
+    margin-left: 10px;
+}
+.row2 {
+    padding: 8px 15px 0px 15px;
+}
