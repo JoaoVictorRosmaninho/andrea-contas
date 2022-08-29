@@ -1,13 +1,12 @@
 import Table from 'react-bootstrap/Table';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "react-bootstrap";
 import axios from 'axios';
-import { Row } from "react-bootstrap";
 import DetailsBar from './DetailsBar';
 import MyNavBar from '../components/NavBar';
-import "./css/logista-component.css"
-import { parseCookies } from 'nookies'
-
+import "./css/logista-component.css";
+import { parseCookies } from 'nookies';
+import PerfilCliente from './subcomponents/PerfilCliente';
 
 let baseUrl = "http://localhost:3001/clientes"
 
@@ -16,10 +15,17 @@ const cookies = parseCookies();
 let config = {
 	headers : {Authorization: "Bearer " + cookies.token}
 }
-
+let idCliente = "id aqui";
 
 export default function ListaCliente() {
 	const [values, setValues] = React.useState([]);
+	const [show, setShow] = useState(false);
+
+	const handleShow = () => setShow(true);
+	const setTempId = (id) => {
+		idCliente = id;
+	}
+	const handleClose = () => setShow(false);
 
     React.useEffect(() => {
         axios.get(baseUrl, config)
@@ -30,15 +36,7 @@ export default function ListaCliente() {
 				console.log(err);
 			})
     }, [])
-/*
-	const deleteField = (e, id) => {
-		e.preventDefault();
-		axios.delete(`http://localhost:3001/clientes/delete/${id}`, config)
-		.then(() => window.alert("Registro deletado com sucesso!"))
-		.catch (() => window.alert("Erro ao deletar registro"))
-	}
-*/
-	
+
 	return (
 		<div>
 			<MyNavBar/>
@@ -63,31 +61,16 @@ export default function ListaCliente() {
 								<td>
 									<Button className="table-buttons" ><a className="link" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
 									<Button className="table-buttons"  onClick={() => axios.delete(`http://localhost:3001/clientes/${element.id}`, config)}>Desabilitar</Button>
+									<Button variant="primary" onClick={() => {handleShow(); setTempId(element.id)}} >Perfil</Button>
 								</td>
 							</tr>
 						);
 					})}
-					
 				</tbody>
 			</Table>
+			{
+				show === true ? <PerfilCliente show={handleShow} hide={handleClose} id={idCliente}/>: ''
+			}
 		</div>
 	);
 }
-
-/*
-
-				
-				{values.map((element) => {
-						return (
-							<tr>
-								<td>{element.nome}</td>
-								<td>{element.cpf}</td>
-								<td>{element.telefone}</td>
-								<td>
-									<Button><a className="table-buttons" href={`/Clientes/edit/${element.id}`}>Editar</a></Button>
-									<Button ><a className="table-buttons" >Deletar</a></Button>
-								</td>
-							</tr>
-						);
-					})}
-*/ 
