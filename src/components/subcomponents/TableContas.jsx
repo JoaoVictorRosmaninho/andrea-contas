@@ -44,18 +44,31 @@ export default function Table(props) {
         };
       }, []);
 
+      const onChangeValue = (e) => {
+        const { value } = e.target; 
+        setModal({...modal, valorParcela: Number(value)})
+      }
+
       const efetuarPagamento = () => {
           const date = new Date().toISOString();
           axios.post(url + `/${modal.id}`, {dataPagamento: date, valorPagamento: modal.valorParcela}, config)
           .then((resp) => {
               window.alert("Pagamento Efetuado com Sucesso")
-              axios.post("http://localhost:3001/contas/list",  {cliente: props.id, ativo: true}, config)
-              .then((resp) => {
-                  props.setContas(resp.data)
-              })
-              .catch((err) => {
-                  window.alert(err.data)
-              })
+              if (props.type === "cliente") {
+                axios.post("http://localhost:3001/contas/list",  {cliente: props.id, ativo: true}, config)
+                .then((resp) => {
+                    props.setContas(resp.data)
+                })
+                .catch((err) => {
+                    window.alert(err.data)
+                })
+              } else if (props.type === "periodo") {
+                if (props.data.startDate && props.data.endDate) {
+                    axios.post("http://localhost:3001/contas/list", props.data, config)
+                        .then(resp => props.setContas(resp.data))
+                        .catch(resp => window.alert(resp.data))
+                }
+              }
               setModal({...modal, modal:false})
           })
           .catch((resp) => {
@@ -119,9 +132,10 @@ export default function Table(props) {
         },
         {
             headerName: 'Ações',  
+            cellStyle: {textAlign: 'center'},
             cellRenderer: (params) => (
                         <Button 
-                            style={{height: "33px"}}
+                            style={{height: "33px", width: "80%"}}
                             onClick={(e) => setModal({
                                         id: params.data.id, 
                                         modal: true, 
@@ -136,7 +150,7 @@ export default function Table(props) {
         // references are now sync'd and can be accessed.
         subtitle.style.color = '#f00';
       }
-    
+    console.log(modal)
     return (
         <div className="ag-theme-alpine" style={{width: 1400, height: 500}}>
 				<AgGridReact
@@ -163,7 +177,15 @@ export default function Table(props) {
                         </Row>
                         <Row>
                             <span>
-                                Valor da Parcela: <NumberFormat prefix={"R$ "} value={modal.valorParcela} decimalScale={2} />
+                                Valor da Parcela: 
+                                <input type="text"
+						            className="form-control"
+						            name="observacoes"
+						            onChange={onChangeValue}
+						            data-js="texto"
+						            value={modal.valorParcela}
+						            required
+						        />
                             </span>
                         </Row>
 

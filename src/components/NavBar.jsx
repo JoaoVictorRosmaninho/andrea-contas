@@ -31,7 +31,7 @@ function MyNavBar() {
               <NavDropdown.Item href="/Contas">Pagamento</NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Relatorios" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/Ativos/new">teste</NavDropdown.Item>
+              <NavDropdown.Item href="/relatorios/geral">Relatorio Geral</NavDropdown.Item>
             </NavDropdown>
         </Nav>
     </Navbar.Collapse>
